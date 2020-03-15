@@ -1,0 +1,20 @@
+$dd-bg-color: #f4f5f4;
+$dd-border-color: #fff;
+
+.dropdown_container {
+    position: absolute;
+    top: 1.4rem;
+    right: 0;
+
+    font-weight: lighter;
+    font-size: 0.8rem;
+}
+
+.dropdown_item {
+    width: 7rem;
+    background-color: $dd-bg-color;
+    border: 1px solid $dd-border-color;
+
+    line-height: 2.5rem;
+    text-align: center;
+}
