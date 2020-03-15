@@ -1,4 +1,4 @@
-import React, { FunctionComponent, HTMLAttributes } from "react";
+import React, { FunctionComponent } from "react";
 import "./style.scss";
 
 export interface DropdownItem {

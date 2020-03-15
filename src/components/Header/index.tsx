@@ -1,28 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../Button";
 import Dropdown, { DropdownItem } from "../Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 
-const items: DropdownItem[] = [
-    {
-        name: "마이페이지",
-        onClick: () => {
-            console.log("마이페이지");
-        }
-    },
-    {
-        name: "로그아웃",
-        onClick: () => {
-            console.log("로그아웃");
-        }
-    }
-];
-
 const Header = () => {
     let loginState = true;
     let name = "김희라";
+    const history = useHistory();
+
+    const items: DropdownItem[] = [
+        {
+            name: "마이페이지",
+            onClick: () => history.push("/mypage")
+        },
+        {
+            name: "로그아웃",
+            onClick: () => {
+                console.log("로그아웃");
+            }
+        }
+    ];
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
