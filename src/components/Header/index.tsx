@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
+import Dropdown, { DropdownItem } from "../Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
+
+const items: DropdownItem[] = [
+    {
+        name: "마이페이지",
+        onClick: () => {
+            console.log("마이페이지");
+        }
+    },
+    {
+        name: "로그아웃",
+        onClick: () => {
+            console.log("로그아웃");
+        }
+    }
+];
 
 const Header = () => {
     let loginState = true;
     let name = "김희라";
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const handleClickOpenDropDown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
     return (
         <header>
             <div className="logo">
@@ -30,7 +53,13 @@ const Header = () => {
                 {loginState ? (
                     <>
                         <div className="tri"></div> &nbsp;
-                        <b className="username">{name}</b>
+                        <b
+                            className="username"
+                            onClick={handleClickOpenDropDown}
+                        >
+                            {name}
+                            {dropdownOpen && <Dropdown items={items} />}
+                        </b>
                         <span>&nbsp;님, 안녕하세요</span>
                     </>
                 ) : (
