@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+@import "./theme.scss";
+
 ::-webkit-scrollbar {
     display: none;
 }
 
 * {
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Comfortaa", cursive;
     text-decoration: none;
     box-sizing: border-box;
     margin: 0;
@@ -35,6 +38,12 @@ main {
     align-items: center;
     padding: 5rem;
     height: 80vh;
+}
+
+@media all and(max-width: 768px) {
+    main {
+        margin-top: 3.5rem;
+    }
 }
 
 button {
