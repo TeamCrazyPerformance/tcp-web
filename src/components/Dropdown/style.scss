@@ -1,4 +1,4 @@
-$dd-bg-color: #f4f5f4;
+$dd-bg-color: #949ba0;
 $dd-border-color: #fff;
 
 .dropdown_container {
@@ -11,10 +11,17 @@ $dd-border-color: #fff;
 }
 
 .dropdown_item {
-    width: 7rem;
-    background-color: $dd-bg-color;
-    border: 1px solid $dd-border-color;
+    & {
+        width: 7rem;
+        background-color: $dd-bg-color;
+        border: 1px solid $dd-border-color;
 
-    line-height: 2.5rem;
-    text-align: center;
+        line-height: 2.5rem;
+        text-align: center;
+        opacity: 0.8;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
 }
