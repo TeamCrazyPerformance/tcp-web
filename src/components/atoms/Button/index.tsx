@@ -9,7 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /**
      * 이벤트 핸들러
      */
-    onClick: () => void;
+    onClick?: () => void;
     /**
      * 버튼 스타일 ex) grey, white
      */

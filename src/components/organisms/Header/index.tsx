@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Button from "../Button";
-import Dropdown, { DropdownItem } from "../Dropdown";
+import Button from "../../atoms/Button";
+import Dropdown, { DropdownItem } from "../../molecules/Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 
@@ -63,8 +63,8 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <Button name="Log in" />
-                        <Button name="Join us" className="grey" />
+                        <Button name="Log in" className="white" />
+                        <Button name="Join us" />
                     </>
                 )}
             </div>

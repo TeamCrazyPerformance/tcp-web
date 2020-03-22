@@ -1,0 +1,10 @@
+$sn-color: #58595b;
+
+.side_navigation_container {
+    position: fixed;
+    left: 0;
+    padding-left: 4rem;
+
+    border-right: 0.05rem solid $sn-color;
+    font-size: 0.8rem;
+}

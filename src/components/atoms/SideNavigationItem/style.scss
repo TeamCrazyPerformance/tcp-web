@@ -1,0 +1,41 @@
+@import "../../../theme.scss";
+$sn-color: #58595b;
+$sn-dark-color: $base-dark-color;
+
+.side_navigation_item {
+    & {
+        width: 8rem;
+
+        font-size: 1rem;
+        line-height: 3.5rem;
+        text-align: center;
+        opacity: 0.8;
+    }
+
+    &:hover,
+    &.subItem:hover,
+    &.active {
+        opacity: 1;
+    }
+
+    &.active,
+    &.subItem.active {
+        font-weight: bold;
+    }
+
+    &.subItem {
+        color: $sn-color;
+        text-align: right;
+        width: 7rem;
+        font-weight: normal;
+    }
+
+    &.subItem.active {
+        color: $base-dark-color;
+    }
+}
+
+.side_navigation_sub_container {
+    font-weight: lighter;
+    padding-right: 1rem;
+}
