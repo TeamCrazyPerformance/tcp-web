@@ -68,7 +68,7 @@ export const SideNavigationItem = (props: SideNavigationItemProps) => {
 
     const handleClick = (e: SyntheticEvent<HTMLDivElement>) => {
         if (subItems.length) setActiveItemId(subItems[0].itemId);
-        if (!(e.target instanceof HTMLDivElement) || !e.target.dataset) return;
+        if (!(e.target instanceof HTMLDivElement && e.target.dataset)) return;
 
         let datasetId;
         if (!(datasetId = e.target.dataset.itemId)) return;
