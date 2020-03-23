@@ -1,0 +1,31 @@
+$table-line-color: #b7b7b9;
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+th,
+td {
+    padding: 1rem 0.3rem;
+}
+
+th {
+    border-bottom: 2px solid #000;
+}
+
+td:nth-child(2) {
+    text-align: left;
+}
+
+tr {
+    & {
+        border-bottom: 1px solid $table-line-color;
+    }
+
+    &.notice {
+        font-weight: bold;
+    }
+}
