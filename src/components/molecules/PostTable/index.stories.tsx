@@ -29,17 +29,17 @@ export const index = () => {
             },
             {
                 no: 36,
-                title: "[회의록] 2020 동아리 홍보",
+                title: "리액트 쵝고 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ",
                 commentCount: 12,
-                date: new Date("2020-03-22"),
+                date: new Date(),
                 writer: "이송열",
                 viewCount: 10
             },
             {
                 no: 35,
-                title: "리액트 쵝고 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ",
+                title: "[회의록] 2020 동아리 홍보",
                 commentCount: 12,
-                date: "2020. 02. 29.",
+                date: new Date("2020-03-02"),
                 writer: "이송열",
                 viewCount: 10
             },

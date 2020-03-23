@@ -1,6 +1,10 @@
 import React from "react";
 import "./style.scss";
 import CommentCountIcon from "../../atoms/CommentCountIcon";
+import { displayDate } from "../../../utils";
+
+const NOTICE_KO = "공지";
+const CLASSNAME_FOR_NOTICE = "notice";
 
 interface PostProps {
     /**
@@ -42,8 +46,9 @@ export interface TableProps {
 
 const Columns = (props: PostProps) => {
     const { no, title, commentCount, date, writer, viewCount } = props;
-    const className = no === "공지" ? "notice" : "";
-    const dateView = date instanceof Date ? date.toLocaleDateString() : date;
+    const className = no === NOTICE_KO ? CLASSNAME_FOR_NOTICE : "";
+    const dateView = displayDate(date);
+
     return (
         <tr className={className}>
             <td>{no}</td>
