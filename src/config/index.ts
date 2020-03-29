@@ -1,6 +1,6 @@
 const ENV = process.env.NODE_ENV;
 
-export const API_SERVER = process.env[`${ENV}_API_SERVER`];
+export const API_SERVER = process.env.REACT_APP_API_SERVER;
 
 export const DEFAULT_REQUEST_OPTION = {
     headers: { "Cache-Control": "no-cache" },
