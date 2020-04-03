@@ -5,9 +5,16 @@ import Dropdown, { DropdownItem } from "../../molecules/Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 
+import { login } from "../../../apis/Auth";
+import { useAuth, Action } from "../../../contexts/Auth";
+
 const Header = () => {
-    let loginState = true;
-    let name = "김희라";
+    const {
+        state: { user },
+        dispatch: userDispatch
+    } = useAuth();
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const history = useHistory();
 
     const items: DropdownItem[] = [
@@ -18,12 +25,13 @@ const Header = () => {
         {
             name: "로그아웃",
             onClick: () => {
-                console.log("로그아웃");
+                userDispatch({
+                    type: Action.LOGOUT
+                });
+                history.push("/");
             }
         }
     ];
-
-    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const handleClickOpenDropDown = () => {
         setDropdownOpen(!dropdownOpen);
@@ -49,23 +57,20 @@ const Header = () => {
                 </ul>
             </nav>
             <div className="login_status_wrapper">
-                {loginState ? (
+                {user && user.username ? (
                     <>
                         <div className="tri"></div> &nbsp;
                         <b
                             className="username"
                             onClick={handleClickOpenDropDown}
                         >
-                            {name}
+                            {user.username}
                             {dropdownOpen && <Dropdown items={items} />}
                         </b>
                         <span>&nbsp;님, 안녕하세요</span>
                     </>
                 ) : (
-                    <>
-                        <Button name="Log in" className="white" />
-                        <Button name="Join us" />
-                    </>
+                    <Button name="로그인" className="white" onClick={login} />
                 )}
             </div>
         </header>
