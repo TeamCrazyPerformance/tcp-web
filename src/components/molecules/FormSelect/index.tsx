@@ -7,11 +7,19 @@ interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     labelName: string;
     required?: boolean;
     invalid?: boolean;
+    invalidCaption?: string;
     options: OptionsProps[];
 }
 
-export default function FormSelect(props: FormSelectProps) {
-    const { labelName, required, invalid, options, ...rest } = props;
+const FormSelect = (props: FormSelectProps) => {
+    const {
+        labelName,
+        required,
+        invalid,
+        invalidCaption,
+        options,
+        ...rest
+    } = props;
     return (
         <div className="form_input_wrapper">
             <label>
@@ -24,6 +32,13 @@ export default function FormSelect(props: FormSelectProps) {
                     </option>
                 ))}
             </select>
+            <div className="invalid_caption">{invalid && invalidCaption}</div>
         </div>
     );
-}
+};
+
+FormSelect.defaultProps = {
+    invalidCaption: "다시 한번 확인해주세요"
+};
+
+export default React.memo(FormSelect);

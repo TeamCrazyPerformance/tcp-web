@@ -6,12 +6,12 @@ import "./style.scss";
 import { Action } from "../../../pages/SignUp/store";
 
 interface SignUpFormProps extends FormHTMLAttributes<HTMLFormElement> {
-    handleSubmit: () => void;
+    handleSubmit: (e: React.SyntheticEvent) => void;
     userinfo: any;
     userDispatch: any;
 }
 
-export default function SignUpForm(props: SignUpFormProps) {
+function SignUpForm(props: SignUpFormProps) {
     const { handleSubmit, userinfo, userDispatch } = props;
     const handleBlur = (e: React.FocusEvent<HTMLFormElement>) => {
         if (
@@ -26,8 +26,8 @@ export default function SignUpForm(props: SignUpFormProps) {
         userDispatch({ type: Action.UPDATE_INFO, inputValue: { name, value } });
     };
 
-    if (!userinfo) return null;
-    const { validateState: isValid } = userinfo;
+    const { user, validateState: isValid } = userinfo;
+    if (!user) return null;
     return (
         <>
             <h1>회원가입</h1>
@@ -36,6 +36,7 @@ export default function SignUpForm(props: SignUpFormProps) {
                     name="grade"
                     labelName="학번"
                     placeholder="ex) 19"
+                    maxLength={2}
                     required={true}
                     invalid={isValid.grade}
                 />
@@ -58,6 +59,7 @@ export default function SignUpForm(props: SignUpFormProps) {
                     name="phone"
                     labelName="연락처"
                     placeholder="- 없이 번호 입력"
+                    maxLength={11}
                     required={true}
                     invalid={isValid.phone}
                 />
@@ -65,12 +67,13 @@ export default function SignUpForm(props: SignUpFormProps) {
                     name="birth"
                     labelName="생년월일"
                     placeholder=" 6자리를 입력 ex) 940422"
+                    maxLength={6}
                     required={true}
                     invalid={isValid.birth}
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={userinfo.username && userinfo.username}
+                    defaultValue={user.username && user.username}
                     name="username"
                     labelName="이름"
                     required={true}
@@ -78,14 +81,14 @@ export default function SignUpForm(props: SignUpFormProps) {
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={userinfo.email && userinfo.email}
+                    defaultValue={user.email && user.email}
                     name="email"
                     labelName="이메일"
                     invalid={isValid.email}
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={userinfo.blog && userinfo.blog}
+                    defaultValue={user.blog && user.blog}
                     name="blog"
                     labelName="블로그"
                     placeholder="ex) https://lallaheeee.github.io/"
@@ -97,3 +100,4 @@ export default function SignUpForm(props: SignUpFormProps) {
         </>
     );
 }
+export default SignUpForm;

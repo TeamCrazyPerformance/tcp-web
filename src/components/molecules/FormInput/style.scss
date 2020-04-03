@@ -32,4 +32,10 @@
     & .invalid {
         border-bottom: 1px solid #ff6464;
     }
+
+    & .invalid_caption {
+        color: #ff6464;
+        font-size: 0.8rem;
+        height: 2rem;
+    }
 }
