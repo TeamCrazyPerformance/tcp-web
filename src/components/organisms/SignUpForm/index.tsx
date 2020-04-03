@@ -3,28 +3,15 @@ import Button from "../../atoms/Button";
 import FormInput from "../../molecules/FormInput";
 import FormSelect from "../../molecules/FormSelect";
 import "./style.scss";
-import { Action } from "../../../pages/SignUp/store";
 
 interface SignUpFormProps extends FormHTMLAttributes<HTMLFormElement> {
     handleSubmit: (e: React.SyntheticEvent) => void;
+    handleBlur: (e: React.FocusEvent<HTMLFormElement>) => void;
     userinfo: any;
-    userDispatch: any;
 }
 
 function SignUpForm(props: SignUpFormProps) {
-    const { handleSubmit, userinfo, userDispatch } = props;
-    const handleBlur = (e: React.FocusEvent<HTMLFormElement>) => {
-        if (
-            !(
-                e.target instanceof HTMLInputElement ||
-                e.target instanceof HTMLSelectElement
-            )
-        )
-            return;
-
-        const { name, value } = e.target;
-        userDispatch({ type: Action.UPDATE_INFO, inputValue: { name, value } });
-    };
+    const { handleSubmit, userinfo, handleBlur } = props;
 
     const { user, validateState: isValid } = userinfo;
     if (!user) return null;
