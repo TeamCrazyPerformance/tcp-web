@@ -1,5 +1,6 @@
 export interface User {
-    githubId: string;
+    id: string;
+    blog: string;
     email: string;
     username: string;
     avatar: string;
@@ -7,11 +8,14 @@ export interface User {
 }
 
 export interface Profile {
-    grade: number;
+    id: string;
+    avatar: string;
+    grade: string;
     schoolRegister: string;
     phone: string;
     birth: string;
     username: string;
     email: string;
     blog: string;
+    exist: boolean;
 }
