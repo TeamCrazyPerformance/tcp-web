@@ -11,16 +11,17 @@ interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 export default function FormSelect(props: FormSelectProps) {
-    const { labelName, required, invalid, options } = props;
+    const { labelName, required, invalid, options, ...rest } = props;
     return (
         <div className="form_input_wrapper">
             <label>
-                {labelName}{" "}
-                {required && <span className="require">(필수)</span>}
+                {labelName} {required && <span className="require">*</span>}
             </label>
-            <select {...props} className={invalid ? "invalid" : ""}>
-                {options.map(({ value, ...rest }) => (
-                    <option {...rest}>{value}</option>
+            <select {...rest} className={invalid ? "invalid" : ""}>
+                {options.map(({ value, ...rest }, idx) => (
+                    <option key={idx} {...rest}>
+                        {value}
+                    </option>
                 ))}
             </select>
         </div>

@@ -13,7 +13,14 @@ form {
 
         padding: 3rem;
 
+        width: 40vw;
+
         border-radius: 0.3rem;
+    }
+
+    & .input_long {
+        grid-column: 1 / 3;
+        width: 100%;
     }
 
     & button {

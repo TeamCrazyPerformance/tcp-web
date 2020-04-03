@@ -8,14 +8,20 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function FormInput(props: FormInputProps) {
-    const { labelName, required, invalid } = props;
+    const {
+        labelName,
+        required,
+        invalid,
+        type = "text",
+        className,
+        ...rest
+    } = props;
     return (
-        <div className="form_input_wrapper">
+        <div className={`form_input_wrapper ${className ? className : ""}`}>
             <label>
-                {labelName}{" "}
-                {required && <span className="require">(필수)</span>}
+                {labelName} {required && <span className="require">*</span>}
             </label>
-            <input {...props} className={invalid ? "invalid" : ""} />
+            <input type={type} className={invalid ? "invalid" : ""} {...rest} />
         </div>
     );
 }

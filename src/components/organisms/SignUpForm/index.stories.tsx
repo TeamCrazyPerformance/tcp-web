@@ -9,6 +9,6 @@ export default {
     component: SignUpForm
 };
 
-export const index = () => {
-    return <SignUpForm handleSubmit={action("submit")} />;
-};
+// export const index = () => {
+//     return <SignUpForm handleSubmit={action("submit")} />;
+// };
