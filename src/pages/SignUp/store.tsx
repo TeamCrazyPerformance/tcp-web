@@ -2,7 +2,7 @@ import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { getTokenValues, setToken } from "../../apis/utils";
-// import { useAuth, Action as authAction } from "../../contexts/user";
+import { useAuth, Action as authAction } from "../../contexts/Auth";
 import { signUp } from "../../apis/Auth";
 import { Profile } from "../../types";
 import validator from "./validate";
@@ -110,7 +110,7 @@ const SignUpContext = createContext<SignUpContextProps>({
 
 export function SignUpProvider(props: React.PropsWithChildren<{}>) {
     const [state, dispatch] = useReducer(SignUpReducer, initialState);
-    // const { dispatch: authDispath } = useAuth();
+    const { dispatch: authDispath } = useAuth();
     const [{ jwt }] = useCookies([]);
     const history = useHistory();
 
@@ -132,10 +132,10 @@ export function SignUpProvider(props: React.PropsWithChildren<{}>) {
             if (!state.user) return;
 
             const user = await signUp(state.user);
-            // authDispath({
-            //     type: authAction.LOAD_USER,
-            //     payload: user
-            // });
+            authDispath({
+                type: authAction.LOAD_USER,
+                payload: user
+            });
             history.replace("/");
         } catch (err) {
             dispatch({
