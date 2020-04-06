@@ -33,7 +33,7 @@ interface PostProps {
     viewCount: number;
 }
 
-export interface TableProps {
+export interface BulletinBoardProps {
     /**
      * 테이블 칼럼 이름
      */
@@ -50,39 +50,39 @@ const Columns = (props: PostProps) => {
     const dateView = displayDate(date);
 
     return (
-        <tr className={className}>
-            <td>{no}</td>
-            <td>{title}</td>
-            <td>
+        <article className={className}>
+            <span>{no}</span>
+            <h3>{title}</h3>
+            <span>
                 <CommentCountIcon count={commentCount} />
-            </td>
-            <td>{dateView}</td>
-            <td>{writer}</td>
-            <td>{viewCount}</td>
-        </tr>
+            </span>
+            <time dateTime={dateView}>{dateView}</time>
+            <span>{writer}</span>
+            <span>{viewCount}</span>
+        </article>
     );
 };
 
-const PostTable = (props: TableProps) => {
+const BulletinBoard = (props: BulletinBoardProps) => {
     const { columns, posts = [] } = props;
 
     return (
-        <table>
-            <tr>
+        <section>
+            <div className="board_caption">
                 {columns.map((col) => (
-                    <th> {col} </th>
+                    <span> {col} </span>
                 ))}
-            </tr>
+            </div>
             {posts.map((post: PostProps) => (
                 <Columns {...post} />
             ))}
-        </table>
+        </section>
     );
 };
 
-PostTable.defaultProps = {
+BulletinBoard.defaultProps = {
     columns: ["번호", "제목", "", "날짜", "글쓴이", "조회수"],
     posts: [],
 };
 
-export default PostTable;
+export default BulletinBoard;

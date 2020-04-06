@@ -1,11 +1,11 @@
 import React, { CSSProperties } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import Table from ".";
+import BulletinBoard from ".";
 
 export default {
-    title: "Molecules / Table",
-    component: Table,
-    decorators: [withKnobs]
+    title: "Molecules / BulletinBoard",
+    component: BulletinBoard,
+    decorators: [withKnobs],
 };
 
 const WrapperStyle: CSSProperties = {
@@ -13,7 +13,7 @@ const WrapperStyle: CSSProperties = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: "5rem"
+    padding: "5rem",
 };
 
 export const index = () => {
@@ -25,7 +25,7 @@ export const index = () => {
                 commentCount: 12,
                 date: new Date("2020-03-02"),
                 writer: "이송열",
-                viewCount: 10
+                viewCount: 10,
             },
             {
                 no: 36,
@@ -33,7 +33,7 @@ export const index = () => {
                 commentCount: 12,
                 date: new Date(),
                 writer: "이송열",
-                viewCount: 10
+                viewCount: 10,
             },
             {
                 no: 35,
@@ -41,7 +41,7 @@ export const index = () => {
                 commentCount: 12,
                 date: new Date("2020-03-02"),
                 writer: "이송열",
-                viewCount: 10
+                viewCount: 10,
             },
             {
                 no: 34,
@@ -49,7 +49,7 @@ export const index = () => {
                 commentCount: 12,
                 date: "2019. 12. 29.",
                 writer: "이송열",
-                viewCount: 10
+                viewCount: 10,
             },
             {
                 no: 33,
@@ -57,7 +57,7 @@ export const index = () => {
                 commentCount: 12,
                 date: new Date("2020-03-02"),
                 writer: "이송열",
-                viewCount: 10
+                viewCount: 10,
             },
             {
                 no: 33,
@@ -65,13 +65,13 @@ export const index = () => {
                 commentCount: 12,
                 date: new Date("2020-03-02"),
                 writer: "이송열",
-                viewCount: 10
-            }
-        ]
+                viewCount: 10,
+            },
+        ],
     };
     return (
         <div style={WrapperStyle}>
-            <Table {...props} />
+            <BulletinBoard {...props} />
         </div>
     );
 };
