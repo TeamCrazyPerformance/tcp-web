@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
-import CommentCountIcon from "../../atoms/CommentCountIcon";
-import { displayDate } from "../../../utils";
+import CommentCountIcon from "@atoms/CommentCountIcon";
+import { displayDate } from "~/utils";
 
 const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";
@@ -69,7 +69,7 @@ const PostTable = (props: TableProps) => {
     return (
         <table>
             <tr>
-                {columns.map(col => (
+                {columns.map((col) => (
                     <th> {col} </th>
                 ))}
             </tr>
@@ -82,7 +82,7 @@ const PostTable = (props: TableProps) => {
 
 PostTable.defaultProps = {
     columns: ["번호", "제목", "", "날짜", "글쓴이", "조회수"],
-    posts: []
+    posts: [],
 };
 
 export default PostTable;

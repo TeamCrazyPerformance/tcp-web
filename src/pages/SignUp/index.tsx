@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpForm from "../../components/organisms/SignUpForm";
+import SignUpForm from "@organisms/SignUpForm";
 import useSignUp, { SignUpProvider, Action } from "./store";
 import "./style.scss";
 
@@ -23,7 +23,7 @@ const SignUpView = () => {
         const { name, value } = e.target;
         signUpDispatch({
             type: Action.UPDATE_INFO,
-            inputValue: { name, value }
+            inputValue: { name, value },
         });
     };
 

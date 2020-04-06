@@ -1,7 +1,7 @@
 import React, { FormHTMLAttributes } from "react";
-import Button from "../../atoms/Button";
-import FormInput from "../../molecules/FormInput";
-import FormSelect from "../../molecules/FormSelect";
+import Button from "@atoms/Button";
+import FormInput from "@molecules/FormInput";
+import FormSelect from "@molecules/FormSelect";
 import "./style.scss";
 
 interface SignUpFormProps extends FormHTMLAttributes<HTMLFormElement> {
@@ -37,7 +37,7 @@ function SignUpForm(props: SignUpFormProps) {
                         { value: "졸업" },
                         { value: "휴학 예정" },
                         { value: "졸업 예정" },
-                        { value: "재학 예정" }
+                        { value: "재학 예정" },
                     ]}
                     required={true}
                     invalid={isValid.schoolRegister}

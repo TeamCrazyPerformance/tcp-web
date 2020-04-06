@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Button from "../../atoms/Button";
-import Dropdown, { DropdownItem } from "../../molecules/Dropdown";
+import Button from "@atoms/Button";
+import Dropdown, { DropdownItem } from "@molecules/Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 
-import { login } from "../../../apis/Auth";
-import { useAuth, Action } from "../../../contexts/Auth";
+import { login } from "~/apis/Auth";
+import { useAuth, Action } from "~/contexts/Auth";
 
 const Header = () => {
     const {
         state: { user },
-        dispatch: userDispatch
+        dispatch: userDispatch,
     } = useAuth();
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -20,17 +20,17 @@ const Header = () => {
     const items: DropdownItem[] = [
         {
             name: "마이페이지",
-            onClick: () => history.push("/mypage")
+            onClick: () => history.push("/mypage"),
         },
         {
             name: "로그아웃",
             onClick: () => {
                 userDispatch({
-                    type: Action.LOGOUT
+                    type: Action.LOGOUT,
                 });
                 history.push("/");
-            }
-        }
+            },
+        },
     ];
 
     const handleClickOpenDropDown = () => {
@@ -57,7 +57,7 @@ const Header = () => {
                 </ul>
             </nav>
             <div className="login_status_wrapper">
-                {user && user.username ? (
+                {user ? (
                     <>
                         <div className="tri"></div> &nbsp;
                         <b
