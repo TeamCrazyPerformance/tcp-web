@@ -1,16 +1,16 @@
 import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { getTokenValues, setToken } from "../../apis/utils";
-import { useAuth, Action as authAction } from "../../contexts/Auth";
-import { signUp } from "../../apis/Auth";
-import { Profile } from "../../types";
+import { getTokenValues, setToken } from "~/apis/utils";
+import { signUp } from "~/apis/Auth";
+import { useAuth, Action as authAction } from "~/contexts/Auth";
+import { Profile } from "~/types";
 import validator from "./validate";
 
 export enum Action {
     UPDATE_INFO = "UPDATE_INFO",
     SUBMIT = "SUBMIT",
-    LOAD_USER = "LOAD_USER"
+    LOAD_USER = "LOAD_USER",
 }
 
 interface ValidateStateType {
@@ -47,10 +47,10 @@ export const initialState: SignUpState = {
         birth: undefined,
         username: undefined,
         email: undefined,
-        blog: undefined
+        blog: undefined,
     },
     user: null,
-    submit: "before"
+    submit: "before",
 };
 
 export function SignUpReducer(
@@ -66,8 +66,8 @@ export function SignUpReducer(
                     id: user?.id,
                     email: user?.email,
                     blog: user?.blog,
-                    username: user?.username
-                }
+                    username: user?.username,
+                },
             };
         }
 
@@ -81,12 +81,12 @@ export function SignUpReducer(
                 ...state,
                 user: {
                     ...user,
-                    [name]: value
+                    [name]: value,
                 },
                 validateState: {
                     ...validateState,
-                    [name]: result
-                }
+                    [name]: result,
+                },
             };
         }
         case Action.SUBMIT: {
@@ -105,7 +105,7 @@ type SignUpContextProps = {
 
 const SignUpContext = createContext<SignUpContextProps>({
     state: initialState,
-    dispatch: () => initialState
+    dispatch: () => initialState,
 });
 
 export function SignUpProvider(props: React.PropsWithChildren<{}>) {
@@ -123,7 +123,7 @@ export function SignUpProvider(props: React.PropsWithChildren<{}>) {
         //@TODO: load 후 validate, exist 시 '/' 리다이렉트
         dispatch({
             type: Action.LOAD_USER,
-            user: { id, username, blog, email }
+            user: { id, username, blog, email },
         });
     }, []);
 
@@ -134,13 +134,13 @@ export function SignUpProvider(props: React.PropsWithChildren<{}>) {
             const user = await signUp(state.user);
             authDispath({
                 type: authAction.LOAD_USER,
-                payload: user
+                payload: user,
             });
             history.replace("/");
         } catch (err) {
             dispatch({
                 type: Action.SUBMIT,
-                payload: false
+                payload: false,
             });
             console.error(err);
             //@TODO: 에러 모달 띄우기

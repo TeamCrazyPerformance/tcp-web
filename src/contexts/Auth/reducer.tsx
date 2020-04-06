@@ -1,4 +1,4 @@
-import { User } from "../../types";
+import { User } from "~/types";
 import Action from "./actions";
 
 export type AuthAction =
@@ -13,7 +13,7 @@ export interface AuthState {
 
 export const initialState: AuthState = {
     isAuthenticated: false,
-    user: null
+    user: null,
 };
 
 export function authReducer(state: AuthState, action: AuthAction): AuthState {

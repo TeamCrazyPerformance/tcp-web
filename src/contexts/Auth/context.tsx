@@ -1,14 +1,14 @@
 import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { authReducer, initialState, AuthAction, AuthState } from "./reducer";
-import { getLocalStorage } from "../../utils";
+import { getLocalStorage } from "~/utils";
 import {
     TOKEN_KEY,
     setToken,
     isTokenValid,
-    getTokenValues
-} from "../../apis/utils";
-import { logout } from "../../apis/Auth";
+    getTokenValues,
+} from "~/apis/utils";
+import { logout } from "~/apis/Auth";
 import Action from "./actions";
 
 type AuthContextProps = {
@@ -18,7 +18,7 @@ type AuthContextProps = {
 
 const AuthContext = createContext<AuthContextProps>({
     state: initialState,
-    dispatch: () => initialState
+    dispatch: () => initialState,
 });
 
 export function AuthProvider(props: React.PropsWithChildren<{}>) {
