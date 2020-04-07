@@ -23,7 +23,7 @@ interface StyledLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
      * @type {(string | number)}
      * @memberof StyledLinkProps
      */
-    name: string | number;
+    name?: string | number;
 }
 
 function StyledLink(props: StyledLinkProps) {
@@ -32,7 +32,7 @@ function StyledLink(props: StyledLinkProps) {
 
     return (
         <a href={href} className="a_href">
-            {name}
+            {name || props.children}
         </a>
     );
 }
