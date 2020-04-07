@@ -21,6 +21,7 @@
         "react-dom": "^16.13.0",
         "react-router-dom": "^5.1.2",
         "react-scripts": "3.4.0",
+        "react-textarea-autosize": "^7.1.2",
         "typescript": "~3.7.2",
         "use-http": "^0.4.3"
     },
@@ -56,6 +57,7 @@
         "@storybook/addons": "^5.3.17",
         "@storybook/preset-create-react-app": "^2.0.0",
         "@storybook/react": "^5.3.17",
+        "@types/react-textarea-autosize": "^4.3.5",
         "@types/storybook-react-router": "^1.0.1",
         "react-app-rewired": "^2.1.5",
         "react-docgen-typescript-loader": "^3.7.1",
