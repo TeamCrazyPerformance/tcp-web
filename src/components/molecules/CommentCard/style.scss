@@ -1,0 +1,60 @@
+.box_comment_card {
+    & {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        position: relative;
+
+        line-height: normal;
+    }
+    & a {
+        line-height: normal;
+    }
+
+    & .box_comment {
+        margin-left: 1rem;
+    }
+
+    & .comment_btns {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    & .edit {
+        position: absolute;
+        top: 0.75rem;
+        right: 2rem;
+    }
+}
+
+.comment_head {
+    & {
+        margin-bottom: 1rem;
+    }
+
+    & strong {
+        margin-left: 0.5rem;
+    }
+
+    & time {
+        font-weight: 100;
+    }
+}
+
+.box_textarea {
+    & {
+        width: 100%;
+        height: fit-content;
+        border: 1px solid #efefef;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem;
+    }
+
+    & textarea {
+        width: 100%;
+        font-size: 1rem;
+        font-weight: lighter;
+    }
+}
