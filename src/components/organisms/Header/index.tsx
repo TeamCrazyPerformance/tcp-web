@@ -1,12 +1,29 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "@atoms/Button";
+import StyledLink from "@atoms/StyledLink";
 import Dropdown, { DropdownItem } from "@molecules/Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 
 import { login } from "~/apis/Auth";
 import { useAuth, Action } from "~/contexts/Auth";
+
+const Nav = () => (
+    <nav>
+        <ul>
+            <li>
+                <StyledLink to="/" name="홈" />
+            </li>
+            <li>
+                <StyledLink to="/boards" name="게시판" />
+            </li>
+            <li>
+                <StyledLink to="/members" name="팀원 소개" />
+            </li>
+        </ul>
+    </nav>
+);
 
 const Header = () => {
     const {
@@ -43,19 +60,7 @@ const Header = () => {
                 <img src={logo} alt={logo} />
                 <div> tcp </div>
             </div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">홈</Link>
-                    </li>
-                    <li>
-                        <Link to="/boards">게시판</Link>
-                    </li>
-                    <li>
-                        <Link to="/members">팀원 소개</Link>
-                    </li>
-                </ul>
-            </nav>
+            <Nav />
             <div className="login_status_wrapper">
                 {user ? (
                     <>
