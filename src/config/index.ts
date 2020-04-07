@@ -4,9 +4,9 @@ export const DEFAULT_REQUEST_OPTION = {
     headers: { "Cache-Control": "no-cache" },
     withCredentials: true,
     mode: "cors",
-    credentials: "include"
+    credentials: "include",
 };
 
-export const API = {
-    login: `${API_SERVER}/users/login`
+export const URLs = {
+    login: `${API_SERVER}/users/login`,
 };
