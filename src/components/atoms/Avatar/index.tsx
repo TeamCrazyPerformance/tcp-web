@@ -19,8 +19,12 @@ export const Avatar = (props: AvatarProps) => {
     const alt = props.alt || github + "_profile";
 
     return (
-        <StyledLink href={`https://github.com/${github}`} target="_blank">
-            <img src={src} alt={alt} {...rest} />
+        <StyledLink
+            href={`https://github.com/${github}`}
+            target="_blank"
+            className="avatar"
+        >
+            <img className="avatar" src={src} alt={alt} {...rest} />
         </StyledLink>
     );
 };
