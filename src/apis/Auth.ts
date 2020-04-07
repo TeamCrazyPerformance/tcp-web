@@ -1,7 +1,7 @@
 import API, { TOKEN_KEY, setToken } from "./utils";
 import { User, Profile } from "../types";
 import { setLocalStorage } from "../utils";
-import { API as SERVER_URI } from "../config";
+import { URLs } from "../config";
 
 type TokenUser = {
     user: User & { token: string };
@@ -14,19 +14,19 @@ function handleUserResponse({ user: { token, ...user } }: TokenUser) {
 }
 
 export function getCurrentUser() {
-    return API.get<TokenUser>(`/users/user`).then(res =>
+    return API.get<TokenUser>(`/users/user`).then((res) =>
         handleUserResponse(res.data)
     );
 }
 
 export function login() {
-    window.location.href = SERVER_URI.login;
+    window.location.href = URLs.login;
 }
 
 export function signUp(user: Partial<Profile>) {
     return API.post<TokenUser>("/users", {
-        user
-    }).then(res => handleUserResponse(res.data));
+        user,
+    }).then((res) => handleUserResponse(res.data));
 }
 
 export function updateUser(user: Partial<User>) {
