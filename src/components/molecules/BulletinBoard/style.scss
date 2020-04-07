@@ -1,5 +1,16 @@
 $table-line-color: #b7b7b9;
 
+.comment_count_wrapper {
+    & {
+        font-weight: lighter;
+        font-size: 0.8rem;
+    }
+
+    & > img {
+        vertical-align: middle;
+    }
+}
+
 section {
     & {
         width: 100%;

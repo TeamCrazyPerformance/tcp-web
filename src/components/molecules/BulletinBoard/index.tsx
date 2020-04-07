@@ -1,11 +1,11 @@
 import React from "react";
 import "./style.scss";
-import CommentCountIcon from "@atoms/CommentCountIcon";
+import CommentIcon from "~/components/atoms/CommentIcon";
 import { displayDate } from "~/utils";
 
 const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";
-
+const MAX_DISPLAY_NUM = 999;
 interface PostProps {
     /**
      * 게시글 번호
@@ -48,13 +48,15 @@ const Columns = (props: PostProps) => {
     const { no, title, commentCount, date, writer, viewCount } = props;
     const className = no === NOTICE_KO ? CLASSNAME_FOR_NOTICE : "";
     const dateView = displayDate(date);
+    const countView =
+        commentCount > MAX_DISPLAY_NUM ? MAX_DISPLAY_NUM + "+" : commentCount;
 
     return (
         <article className={className}>
             <span>{no}</span>
             <h3>{title}</h3>
-            <span>
-                <CommentCountIcon count={commentCount} />
+            <span className="comment_count_wrapper">
+                <CommentIcon /> {countView}
             </span>
             <time dateTime={dateView}>{dateView}</time>
             <span>{writer}</span>
