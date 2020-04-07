@@ -1,0 +1,27 @@
+@import "~/theme.scss";
+
+a {
+    & {
+        padding: 0.3rem;
+        line-height: 5rem;
+        color: $base-dark-color;
+        opacity: 0.3;
+    }
+
+    &:hover {
+        font-weight: bold;
+        opacity: 1;
+    }
+}
+
+.a_href {
+    & {
+        opacity: 1;
+        text-decoration: underline;
+    }
+    &:hover {
+        opacity: 0.7;
+        text-decoration: underline;
+        font-weight: normal;
+    }
+}
