@@ -1,0 +1,27 @@
+.box_comment_textarea {
+    & {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        line-height: normal;
+    }
+    & a {
+        line-height: normal;
+    }
+}
+
+.box_textarea {
+    & {
+        width: 100%;
+        height: fit-content;
+        border: 1px solid #efefef;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem;
+    }
+
+    & textarea {
+        width: 100%;
+        font-size: 1rem;
+        font-weight: lighter;
+    }
+}

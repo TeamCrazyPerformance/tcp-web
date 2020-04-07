@@ -5,6 +5,7 @@ export interface User {
     username: string;
     avatar: string;
     exist: boolean;
+    github: string;
 }
 
 export interface Profile {
