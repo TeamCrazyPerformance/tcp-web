@@ -60,7 +60,7 @@ function SignUpForm(props: SignUpFormProps) {
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={user.username && user.username}
+                    defaultValue={user.username || ""}
                     name="username"
                     labelName="이름"
                     required={true}
@@ -68,14 +68,14 @@ function SignUpForm(props: SignUpFormProps) {
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={user.email && user.email}
+                    defaultValue={user.email || ""}
                     name="email"
                     labelName="이메일"
                     invalid={isValid.email}
                 />
                 <FormInput
                     className="input_long"
-                    defaultValue={user.blog && user.blog}
+                    defaultValue={user.blog || ""}
                     name="blog"
                     labelName="블로그"
                     placeholder="ex) https://lallaheeee.github.io/"
