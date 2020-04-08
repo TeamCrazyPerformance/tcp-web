@@ -28,8 +28,6 @@ export interface Article {
     title: string;
     contents: string;
 
-    comment: string;
-
     commentCount: number;
     viewCount: number;
 

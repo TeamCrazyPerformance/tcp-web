@@ -2,16 +2,16 @@ import React from "react";
 import Avatar from "@atoms/Avatar";
 import { IoMdEye as EyeIcon } from "react-icons/io";
 import { MdModeComment as CommentIcon } from "react-icons/md";
-// import PencilButton from "@atoms/PencilButton";
+import CommentContainer from "@molecules/CommentContainer";
 import { displayDate } from "~/utils";
-import { Article } from "~/types";
+import { User, Article as IArticle, Comment } from "~/types";
 import "./style.scss";
 
 export interface ArticleTitleProps {
-    article: Omit<Article, "comment" | "contents">;
+    article: Omit<IArticle, "comment" | "contents">;
 }
 
-const ArticleTitle = (props: ArticleTitleProps) => {
+export const ArticleTitle = (props: ArticleTitleProps) => {
     const {
         author,
         createdAt,
@@ -54,4 +54,30 @@ ArticleTitle.defaultProps = {
     deletable: false,
 };
 
-export default ArticleTitle;
+export interface ArticleProps {
+    user: User;
+    article: IArticle;
+    comments: Comment[];
+}
+
+const Article = (props: ArticleProps) => {
+    const { user, article, comments } = props;
+
+    return (
+        <div className="article_page">
+            <ArticleTitle article={article} />
+
+            <div className="article_content">
+                {article.contents.split("\n").map((line) => (
+                    <span>
+                        {line}
+                        <br />
+                    </span>
+                ))}
+            </div>
+            <CommentContainer comments={comments} user={user} />
+        </div>
+    );
+};
+
+export default Article;
