@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "@atoms/Avatar";
-import PencilButton from "@atoms/PencilButton";
-import CloseButton from "@atoms/CloseButton";
+import { FiEdit3 as EditIcon } from "react-icons/fi";
+import { IoMdClose as CloseIcon } from "react-icons/io";
 import { displayDate } from "~/utils";
 import { User } from "~/types";
 import "./style.scss";
@@ -52,8 +52,8 @@ const CommentCard = (props: CommentCardProps) => {
                         <time>{dateView}</time>
                     </span>
                     <span className="comment_btns">
-                        {editable && <PencilButton />}
-                        {deletable && <CloseButton />}
+                        {editable && <EditIcon className="edit" />}
+                        {deletable && <CloseIcon />}
                     </span>
                 </div>
                 <div className="comment_body">
