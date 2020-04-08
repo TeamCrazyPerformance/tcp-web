@@ -20,3 +20,15 @@ export interface Profile {
     blog: string;
     exist: boolean;
 }
+
+export interface Article {
+    id: number;
+    author: Partial<User>;
+    title: string;
+    comment: string;
+    commentCount: number;
+    viewCount: number;
+
+    createdAt: Date;
+    updatedAt?: Date;
+}
