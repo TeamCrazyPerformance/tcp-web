@@ -5,8 +5,17 @@ import FormSelect from "@molecules/FormSelect";
 import "./style.scss";
 
 interface SignUpFormProps extends FormHTMLAttributes<HTMLFormElement> {
+    /**
+     * onSubmit 이벤트 핸들러
+     */
     handleSubmit: (e: React.SyntheticEvent) => void;
+    /**
+     * onBlur 이벤트 핸들러
+     */
     handleBlur: (e: React.FocusEvent<HTMLFormElement>) => void;
+    /**
+     * User 정보
+     */
     userinfo: any;
 }
 

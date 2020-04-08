@@ -1,10 +1,23 @@
 import React, { InputHTMLAttributes } from "react";
 import "./style.scss";
 
-interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+    /**
+     * 라벨에 표시될 내용
+     */
     labelName: string;
+    /**
+     * 필수 항목 여부 * 표시
+     */
     required?: boolean;
+    /**
+     * validate 통과 여부
+     * true일 시 invalid
+     */
     invalid?: boolean;
+    /**
+     * invalid시 노출될 안내 문구
+     */
     invalidCaption?: string;
 }
 
@@ -31,7 +44,7 @@ function FormInput(props: FormInputProps) {
 
 FormInput.defaultProps = {
     type: "text",
-    invalidCaption: "다시 한번 확인해주세요"
+    invalidCaption: "다시 한번 확인해주세요",
 };
 
 export default React.memo(FormInput);

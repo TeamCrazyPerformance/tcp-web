@@ -7,7 +7,13 @@ import { User } from "~/types";
 import "./style.scss";
 
 export interface CommentProps {
+    /**
+     * 현재 접속중인 user
+     */
     user: User;
+    /**
+     * Comment 리스트
+     */
     comments: CommentCardProps[];
 }
 

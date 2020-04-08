@@ -6,6 +6,9 @@ import { User } from "~/types";
 import "./style.scss";
 
 interface CommentTextAreaProps {
+    /**
+     * 현재 로그인 중인 유저
+     */
     user?: User;
 }
 

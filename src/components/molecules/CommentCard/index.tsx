@@ -7,11 +7,29 @@ import { User } from "~/types";
 import "./style.scss";
 
 export interface CommentCardProps {
+    /**
+     * 댓글 식별자
+     */
     id: any;
+    /**
+     * 댓글 작성자
+     */
     writer: Partial<User>;
+    /**
+     * 댓글 작성일
+     */
     createAt: string | Date;
+    /**
+     *  삭제 버튼 노출 여부
+     */
     deletable?: boolean;
+    /**
+     * 수정 버튼 노출 여부
+     */
     editable?: boolean;
+    /**
+     * 댓글 내용
+     */
     contents: string;
 }
 
