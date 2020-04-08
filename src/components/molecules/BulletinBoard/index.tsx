@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import CommentIcon from "~/components/atoms/CommentIcon";
+import { FaCommentAlt as CommentIcon } from "react-icons/fa";
 import { displayDate } from "~/utils";
 
 const NOTICE_KO = "공지";
