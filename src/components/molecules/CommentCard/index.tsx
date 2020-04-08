@@ -3,22 +3,11 @@ import Avatar from "@atoms/Avatar";
 import { FiEdit3 as EditIcon } from "react-icons/fi";
 import { IoMdClose as CloseIcon } from "react-icons/io";
 import { displayDate } from "~/utils";
-import { User } from "~/types";
+import { Comment } from "~/types";
 import "./style.scss";
 
 export interface CommentCardProps {
-    /**
-     * 댓글 식별자
-     */
-    id: any;
-    /**
-     * 댓글 작성자
-     */
-    writer: Partial<User>;
-    /**
-     * 댓글 작성일
-     */
-    createAt: string | Date;
+    comment: Comment;
     /**
      *  삭제 버튼 노출 여부
      */
@@ -27,17 +16,16 @@ export interface CommentCardProps {
      * 수정 버튼 노출 여부
      */
     editable?: boolean;
-    /**
-     * 댓글 내용
-     */
-    contents: string;
 }
 
 const CommentCard = (props: CommentCardProps) => {
-    const { writer, createAt, contents, editable, deletable } = props;
-    const dateView = displayDate(createAt, { format: "YYYY. MM. DD A hh:mm" });
+    const { comment, editable, deletable } = props;
+    const { author, createdAt, updatedAt, contents } = comment;
+    const { avatar = "", github = "", username = "" } = author;
 
-    const { avatar = "", github = "", username = "" } = writer;
+    const dateView = displayDate(updatedAt || createdAt, {
+        format: "YYYY. MM. DD A hh:mm",
+    });
 
     return (
         <div className="box_comment_card">

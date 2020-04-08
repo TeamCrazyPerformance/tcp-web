@@ -1,8 +1,8 @@
 import React from "react";
 import Divider from "@atoms/Divider";
 import CommentTextArea from "@molecules/CommentTextArea";
-import CommentCard, { CommentCardProps } from "@molecules/CommentCard";
-import { User } from "~/types";
+import CommentCard from "@molecules/CommentCard";
+import { User, Comment as IComment } from "~/types";
 
 import "./style.scss";
 
@@ -14,7 +14,7 @@ export interface CommentProps {
     /**
      * Comment 리스트
      */
-    comments: CommentCardProps[];
+    comments: IComment[];
 }
 
 const Comment = (props: CommentProps) => {
@@ -26,14 +26,12 @@ const Comment = (props: CommentProps) => {
             <Divider />
             <div className="box_comments">
                 {comments.length &&
-                    comments.map(({ id, writer, ...rest }) => (
+                    comments.map((comment) => (
                         <CommentCard
-                            key={id}
-                            id={id}
-                            writer={writer}
-                            {...rest}
-                            deletable={writer.id === user.id}
-                            editable={writer.id === user.id}
+                            key={comment.id}
+                            comment={comment}
+                            deletable={comment.author.id === user.id}
+                            editable={comment.author.id === user.id}
                         />
                     ))}
             </div>

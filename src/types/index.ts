@@ -23,12 +23,24 @@ export interface Profile {
 
 export interface Article {
     id: number;
+
     author: Partial<User>;
     title: string;
+    contents: string;
+
     comment: string;
+
     commentCount: number;
     viewCount: number;
 
     createdAt: Date;
     updatedAt?: Date;
+}
+
+export interface Comment {
+    id: number;
+    author: Partial<User>;
+    createdAt: string | Date;
+    updatedAt?: string | Date;
+    contents: string;
 }
