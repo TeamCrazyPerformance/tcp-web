@@ -20,14 +20,14 @@ export const Button = (props: ButtonProps) => {
     const { name, onClick, className = "grey" } = props;
 
     return (
-        <button onClick={onClick} className={className}>
+        <button onClick={onClick} className={`btn ${className}`}>
             {name}
         </button>
     );
 };
 
 Button.defaultProps = {
-    className: "grey"
+    className: "grey",
 };
 
 export default Button;
