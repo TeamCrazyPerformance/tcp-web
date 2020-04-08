@@ -25,7 +25,7 @@ function SignUpForm(props: SignUpFormProps) {
     const { user, validateState: isValid } = userinfo;
     if (!user) return null;
     return (
-        <>
+        <section className="form_signup">
             <h1>회원가입</h1>
             <form onSubmit={handleSubmit} onBlur={handleBlur}>
                 <FormInput
@@ -93,7 +93,7 @@ function SignUpForm(props: SignUpFormProps) {
                 />
                 <Button name="가입하기" />
             </form>
-        </>
+        </section>
     );
 }
 export default SignUpForm;
