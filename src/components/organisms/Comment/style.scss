@@ -1,0 +1,15 @@
+.comment_container {
+    & hr {
+        margin: 2rem 0;
+        padding: 1px;
+    }
+}
+
+.box_comments {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        margin-bottom: 3rem;
+    }
+}
