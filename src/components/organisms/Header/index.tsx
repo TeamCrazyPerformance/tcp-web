@@ -16,7 +16,7 @@ const Nav = () => (
                 <StyledLink to="/" name="홈" />
             </li>
             <li>
-                <StyledLink to="/boards" name="게시판" />
+                <StyledLink to="/articles" name="게시판" />
             </li>
             <li>
                 <StyledLink to="/members" name="팀원 소개" />
@@ -37,7 +37,7 @@ const Header = () => {
     const items: DropdownItem[] = [
         {
             name: "마이페이지",
-            onClick: () => history.push("/mypage"),
+            onClick: () => history.push("/settings"),
         },
         {
             name: "로그아웃",

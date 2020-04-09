@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "@organisms/Header";
 
-const Home = () => (
+const NotFound = () => (
     <>
         <Header />
-        <main>welcome, Home!</main>
+        <main>welcome, NotFound page!</main>
     </>
 );
 
-export default Home;
+export default NotFound;

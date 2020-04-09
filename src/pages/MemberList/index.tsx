@@ -1,11 +1,11 @@
 import React from "react";
 import Header from "@organisms/Header";
 
-const Home = () => (
+const MemberList = () => (
     <>
         <Header />
-        <main>welcome, Home!</main>
+        <main>welcome, MemberList page!</main>
     </>
 );
 
-export default Home;
+export default MemberList;
