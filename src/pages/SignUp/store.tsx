@@ -1,9 +1,9 @@
 import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { getTokenValues, setToken } from "~/apis/utils";
-import { signUp } from "~/apis/Auth";
+import { setToken } from "~/apis/utils";
+import * as api from "~/apis/Auth";
 import { useAuth, Action as authAction } from "~/contexts/Auth";
+import { useQuery } from "~/hooks";
 import { User } from "~/types";
 import validator from "./validate";
 
@@ -11,6 +11,7 @@ export enum Action {
     UPDATE_INFO = "UPDATE_INFO",
     SUBMIT = "SUBMIT",
     LOAD_USER = "LOAD_USER",
+    REDIRECT = "REDIRECT",
 }
 
 interface ValidateStateType {
@@ -29,7 +30,11 @@ interface ValidateInput {
 }
 
 export type SignUpAction =
-    | { type: Action.LOAD_USER; user: Partial<User> }
+    | {
+          type: Action.LOAD_USER;
+          user: Partial<User>;
+      }
+    | { type: Action.REDIRECT }
     | { type: Action.UPDATE_INFO; inputValue: ValidateInput }
     | { type: Action.SUBMIT; payload: boolean };
 
@@ -37,6 +42,7 @@ export interface SignUpState {
     user: Partial<User> | null;
     validateState: ValidateStateType | null;
     submit: "before" | "submit";
+    needRedirect: boolean;
 }
 
 export const initialState: SignUpState = {
@@ -51,6 +57,7 @@ export const initialState: SignUpState = {
     },
     user: null,
     submit: "before",
+    needRedirect: false,
 };
 
 export function SignUpReducer(
@@ -68,6 +75,14 @@ export function SignUpReducer(
                     blog: user?.blog,
                     username: user?.username,
                 },
+                needRedirect: true,
+            };
+        }
+
+        case Action.REDIRECT: {
+            return {
+                ...state,
+                needRedirect: false,
             };
         }
 
@@ -108,52 +123,81 @@ const SignUpContext = createContext<SignUpContextProps>({
     dispatch: () => initialState,
 });
 
+const getStringValue = (args: string[] | string | null | undefined): string =>
+    Array.isArray(args) ? args[0] : args ? args : "";
+
 export function SignUpProvider(props: React.PropsWithChildren<{}>) {
-    const [state, dispatch] = useReducer(SignUpReducer, initialState);
+    const [
+        { user, submit, needRedirect, validateState },
+        dispatch,
+    ] = useReducer(SignUpReducer, initialState);
     const { dispatch: authDispath } = useAuth();
-    const [{ jwt }] = useCookies([]);
     const history = useHistory();
+    const query = useQuery();
 
-    useEffect(() => {
-        const payload = getTokenValues(jwt);
-        if (!payload) return;
+    const setUser = () => {
+        let { id, username, blog, email, token } = query;
+        if (!token) return;
 
-        setToken(jwt);
-        const { id, username, blog, email } = payload;
-        //@TODO: load 후 validate, exist 시 '/' 리다이렉트
+        [id, username, blog, email, token] = [
+            id,
+            username,
+            blog,
+            email,
+            token,
+        ].map((item) => getStringValue(item));
+
+        setToken(token);
         dispatch({
             type: Action.LOAD_USER,
-            user: { id, username, blog, email },
+            user: {
+                id,
+                username,
+                blog,
+                email,
+            },
         });
-    }, []);
-
-    const handleSubmit = async () => {
-        try {
-            if (!state.user) return;
-
-            const user = await signUp(state.user);
-            authDispath({
-                type: authAction.LOAD_USER,
-                payload: user,
-            });
-            history.replace("/");
-        } catch (err) {
-            dispatch({
-                type: Action.SUBMIT,
-                payload: false,
-            });
-            console.error(err);
-            //@TODO: 에러 모달 띄우기
-        }
     };
 
-    useEffect(() => {
-        //@TODO: submit 전 validate.. 및 확인 모달 띄우기..
-        if (state.submit !== "submit") return;
-        handleSubmit();
-    }, [state.submit]);
+    const handleSubmit = () => {
+        if (!user || submit !== "submit") return;
 
-    return <SignUpContext.Provider value={{ state, dispatch }} {...props} />;
+        api.signUp(user)
+            .then((newUser) =>
+                authDispath({
+                    type: authAction.LOAD_USER,
+                    payload: newUser,
+                })
+            )
+            .then(() => history.replace("/"))
+            .catch((err) => {
+                dispatch({
+                    type: Action.SUBMIT,
+                    payload: false,
+                });
+                console.error(err);
+            });
+    };
+
+    const redircet = () => {
+        if (!needRedirect) return;
+        dispatch({ type: Action.REDIRECT });
+        history.replace("/signup");
+    };
+
+    useEffect(setUser, []);
+    useEffect(redircet, [needRedirect, history]);
+    useEffect(handleSubmit, [submit]);
+
+    return (
+        <SignUpContext.Provider
+            value={{
+                state: { user, submit, needRedirect, validateState },
+                dispatch,
+            }}
+            {...props}
+        />
+    );
 }
 
 export default function useSignUp() {
