@@ -1,0 +1,50 @@
+.box_post_title {
+    & {
+        display: flex;
+        align-items: center;
+
+        line-height: normal;
+    }
+
+    & .title_right_side {
+        display: flex;
+        align-items: center;
+
+        margin-left: auto;
+    }
+
+    & .title_icons {
+        margin-left: auto;
+        margin-right: 3rem;
+        opacity: 0.6;
+    }
+
+    & .title_icon {
+        margin-right: 1rem;
+    }
+
+    & .avatar {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.title_info {
+    & {
+        flex: none;
+    }
+    & h1 {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    & time {
+        margin-right: 1rem;
+        font-weight: 100;
+    }
+}
+
+.article_content {
+    padding: 8rem 4rem;
+    font-size: 1.2rem;
+}

@@ -55,7 +55,7 @@ const Header = () => {
     };
 
     return (
-        <header>
+        <header className="page_header">
             <div className="logo">
                 <img src={logo} alt={logo} />
                 <div> tcp </div>
