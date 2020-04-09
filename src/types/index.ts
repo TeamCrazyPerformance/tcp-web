@@ -1,30 +1,28 @@
 export interface User {
     id: string;
-    blog: string;
     email: string;
     username: string;
     avatar: string;
-    exist: boolean;
-    github: string;
-}
 
-export interface Profile {
-    id: string;
-    avatar: string;
+    github: string;
     grade: string;
     schoolRegister: string;
     phone: string;
     birth: string;
-    username: string;
-    email: string;
     blog: string;
-    exist: boolean;
+}
+
+export interface Profile {
+    id: string;
+    github: string;
+    username: string;
+    avatar: string;
 }
 
 export interface Article {
     id: number;
 
-    author: Partial<User>;
+    author: Profile;
     title: string;
     contents: string;
 
@@ -37,7 +35,7 @@ export interface Article {
 
 export interface Comment {
     id: number;
-    author: Partial<User>;
+    author: Profile;
     createdAt: string | Date;
     updatedAt?: string | Date;
     contents: string;

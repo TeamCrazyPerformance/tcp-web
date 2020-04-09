@@ -1,14 +1,14 @@
-import { User } from "~/types";
+import { Profile } from "~/types";
 import Action from "./actions";
 
 export type AuthAction =
     | { type: Action.LOGIN }
-    | { type: Action.LOAD_USER; payload: User }
+    | { type: Action.LOAD_USER; payload: Profile }
     | { type: Action.LOGOUT };
 
 export interface AuthState {
     isAuthenticated: boolean;
-    user: User | null;
+    user: Profile | null;
 }
 
 export const initialState: AuthState = {

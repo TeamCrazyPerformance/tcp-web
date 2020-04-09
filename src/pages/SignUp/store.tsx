@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { getTokenValues, setToken } from "~/apis/utils";
 import { signUp } from "~/apis/Auth";
 import { useAuth, Action as authAction } from "~/contexts/Auth";
-import { Profile } from "~/types";
+import { User } from "~/types";
 import validator from "./validate";
 
 export enum Action {
@@ -29,12 +29,12 @@ interface ValidateInput {
 }
 
 export type SignUpAction =
-    | { type: Action.LOAD_USER; user: Partial<Profile> }
+    | { type: Action.LOAD_USER; user: Partial<User> }
     | { type: Action.UPDATE_INFO; inputValue: ValidateInput }
     | { type: Action.SUBMIT; payload: boolean };
 
 export interface SignUpState {
-    user: Partial<Profile> | null;
+    user: Partial<User> | null;
     validateState: ValidateStateType | null;
     submit: "before" | "submit";
 }
