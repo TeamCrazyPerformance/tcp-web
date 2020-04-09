@@ -50,15 +50,28 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
     );
 };
 
-ArticleTitle.defaultProps = {
-    deletable: false,
-};
-
 export interface ArticleProps {
     user: User;
     article: IArticle;
     comments: Comment[];
 }
+
+const parse = (line: string) => (
+    <span>
+        {line}
+        <br />
+    </span>
+);
+
+const ArticleContents = ({ contents }: { contents: string }) => {
+    const contentsSplitedByNewline = contents.split("\n");
+
+    return (
+        <div className="article_content">
+            {contentsSplitedByNewline.map(parse)}
+        </div>
+    );
+};
 
 const Article = (props: ArticleProps) => {
     const { user, article, comments } = props;
@@ -66,15 +79,7 @@ const Article = (props: ArticleProps) => {
     return (
         <div className="article_page">
             <ArticleTitle article={article} />
-
-            <div className="article_content">
-                {article.contents.split("\n").map((line) => (
-                    <span>
-                        {line}
-                        <br />
-                    </span>
-                ))}
-            </div>
+            <ArticleContents contents={article.contents} />
             <CommentContainer comments={comments} user={user} />
         </div>
     );

@@ -30,7 +30,7 @@ function StyledLink(props: StyledLinkProps) {
     const { to, href, name } = props;
     if (to)
         return (
-            <Link className="a_link" to={to}>
+            <Link className="internal_link" to={to}>
                 {name}
             </Link>
         );
