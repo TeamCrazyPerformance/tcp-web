@@ -8,7 +8,7 @@ import {
     isTokenValid,
     getTokenValues,
 } from "~/apis/utils";
-import { logout } from "~/apis/Auth";
+import { getCurrentUser, logout } from "~/apis/Auth";
 import Action from "./actions";
 
 type AuthContextProps = {
@@ -22,28 +22,49 @@ const AuthContext = createContext<AuthContextProps>({
 });
 
 export function AuthProvider(props: React.PropsWithChildren<{}>) {
-    const [state, dispatch] = useReducer(authReducer, initialState);
+    const [{ user, isAuthenticated }, userDispatch] = useReducer(
+        authReducer,
+        initialState
+    );
     const [{ jwt }] = useCookies([]);
 
-    useEffect(() => {
+    const initAuth = () => {
         const token = getLocalStorage(TOKEN_KEY) || jwt;
+        if (!token) return;
+
         if (jwt) {
             const payload = getTokenValues(jwt);
             if (payload && !payload.exist) return;
         }
 
-        if (!token) return;
-
         if (isTokenValid(token)) {
             setToken(token);
-            dispatch({ type: Action.LOGIN });
+            userDispatch({ type: Action.LOGIN });
         } else {
-            dispatch({ type: Action.LOGOUT });
+            userDispatch({ type: Action.LOGOUT });
             logout();
         }
-    }, []);
+    };
 
-    return <AuthContext.Provider value={{ state, dispatch }} {...props} />;
+    const fetchUser = () => {
+        if (user || !isAuthenticated) return;
+
+        getCurrentUser()
+            .then((user) =>
+                userDispatch({ type: Action.LOAD_USER, payload: user })
+            )
+            .catch((error) => console.log(error));
+    };
+
+    useEffect(initAuth, []);
+    useEffect(fetchUser, [user, isAuthenticated, userDispatch]);
+
+    return (
+        <AuthContext.Provider
+            value={{ state: { user, isAuthenticated }, dispatch: userDispatch }}
+            {...props}
+        />
+    );
 }
 
 export default function useAuth() {
