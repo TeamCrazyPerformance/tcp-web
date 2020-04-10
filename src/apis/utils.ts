@@ -16,11 +16,7 @@ export function setToken(token: string | null) {
 
 interface JWTPayload {
     id: string;
-    avatar: string;
-    exist: boolean;
-    email: string;
-    blog: string;
-    username: string;
+    github: string;
     exp: number;
 }
 
@@ -29,16 +25,6 @@ export function isTokenValid(token: string) {
         const decoded: JWTPayload = jwtDecode(token);
         const currentAt = Date.now().valueOf() / 1000;
         return decoded.exp > currentAt;
-    } catch (error) {
-        return false;
-    }
-}
-
-export function getTokenValues(token: string) {
-    try {
-        const decoded: JWTPayload = jwtDecode(token);
-        const currentAt = Date.now().valueOf() / 1000;
-        return decoded.exp > currentAt ? decoded : false;
     } catch (error) {
         return false;
     }

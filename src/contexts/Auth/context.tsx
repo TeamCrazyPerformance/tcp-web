@@ -1,13 +1,7 @@
 import React, { createContext, useReducer, useEffect, useContext } from "react";
-import { useCookies } from "react-cookie";
 import { authReducer, initialState, AuthAction, AuthState } from "./reducer";
 import { getLocalStorage } from "~/utils";
-import {
-    TOKEN_KEY,
-    setToken,
-    isTokenValid,
-    getTokenValues,
-} from "~/apis/utils";
+import { TOKEN_KEY, setToken, isTokenValid } from "~/apis/utils";
 import { getCurrentUser, logout } from "~/apis/Auth";
 import Action from "./actions";
 
@@ -26,16 +20,10 @@ export function AuthProvider(props: React.PropsWithChildren<{}>) {
         authReducer,
         initialState
     );
-    const [{ jwt }] = useCookies([]);
 
     const initAuth = () => {
-        const token = getLocalStorage(TOKEN_KEY) || jwt;
+        const token = getLocalStorage(TOKEN_KEY);
         if (!token) return;
-
-        if (jwt) {
-            const payload = getTokenValues(jwt);
-            if (payload && !payload.exist) return;
-        }
 
         if (isTokenValid(token)) {
             setToken(token);
