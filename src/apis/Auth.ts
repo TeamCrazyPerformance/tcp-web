@@ -14,7 +14,7 @@ function handleUserResponse({ user: { token, ...user } }: TokenUser) {
 }
 
 export function getCurrentUser() {
-    return API.get<TokenUser>(`/users/user`).then((res) =>
+    return API.get<TokenUser>(`/user`).then((res) =>
         handleUserResponse(res.data)
     );
 }
