@@ -32,9 +32,6 @@ export const index = () => {
             github: "lallaheeee",
             username: "김희라",
             id: "0",
-            blog: "string",
-            email: "string",
-            exist: true,
         },
         comments: [
             {

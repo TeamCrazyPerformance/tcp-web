@@ -8,6 +8,7 @@ import {
     MemberList,
     MyPage,
     NotFound,
+    Redirect,
 } from "~/pages";
 import PrivateRoute from "./PrivateRoute";
 
@@ -15,7 +16,8 @@ export default () => (
     <Router>
         <Switch>
             <Route exact path="/" component={Home} />
-            <PrivateRoute path="/signup" component={SignUp} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/redirect" component={Redirect} />
             <Route path="/articles" component={ArticleList} />
             <PrivateRoute path="/article" component={Article} />
             <Route path="/members" component={MemberList} />

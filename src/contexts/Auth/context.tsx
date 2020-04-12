@@ -1,15 +1,14 @@
 import React, { createContext, useReducer, useEffect, useContext } from "react";
-import { useCookies } from "react-cookie";
 import { authReducer, initialState, AuthAction, AuthState } from "./reducer";
 import { getLocalStorage } from "~/utils";
-import {
-    TOKEN_KEY,
-    setToken,
-    isTokenValid,
-    getTokenValues,
-} from "~/apis/utils";
-import { logout } from "~/apis/Auth";
+import { TOKEN_KEY, setToken, isTokenValid } from "~/apis/utils";
+import * as api from "~/apis/Auth";
 import Action from "./actions";
+
+function logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
+}
 
 type AuthContextProps = {
     state: AuthState;
@@ -18,32 +17,47 @@ type AuthContextProps = {
 
 const AuthContext = createContext<AuthContextProps>({
     state: initialState,
-    dispatch: () => initialState,
+    dispatch: () => initialState
 });
 
 export function AuthProvider(props: React.PropsWithChildren<{}>) {
-    const [state, dispatch] = useReducer(authReducer, initialState);
-    const [{ jwt }] = useCookies([]);
+    const [{ user, isAuthenticated }, userDispatch] = useReducer(
+        authReducer,
+        initialState
+    );
 
-    useEffect(() => {
-        const token = getLocalStorage(TOKEN_KEY) || jwt;
-        if (jwt) {
-            const payload = getTokenValues(jwt);
-            if (payload && !payload.exist) return;
-        }
-
+    const initAuth = () => {
+        const token = getLocalStorage(TOKEN_KEY);
         if (!token) return;
 
         if (isTokenValid(token)) {
             setToken(token);
-            dispatch({ type: Action.LOGIN });
+            userDispatch({ type: Action.LOGIN });
         } else {
-            dispatch({ type: Action.LOGOUT });
+            userDispatch({ type: Action.LOGOUT });
             logout();
         }
-    }, []);
+    };
 
-    return <AuthContext.Provider value={{ state, dispatch }} {...props} />;
+    const fetchUser = () => {
+        if (user || !isAuthenticated) return;
+
+        api.getCurrentUser()
+            .then(user =>
+                userDispatch({ type: Action.LOAD_USER, payload: user })
+            )
+            .catch(error => console.log(error));
+    };
+
+    useEffect(initAuth, []);
+    useEffect(fetchUser, [user, isAuthenticated, userDispatch]);
+
+    return (
+        <AuthContext.Provider
+            value={{ state: { user, isAuthenticated }, dispatch: userDispatch }}
+            {...props}
+        />
+    );
 }
 
 export default function useAuth() {

@@ -2,7 +2,7 @@ import React from "react";
 import Divider from "@atoms/Divider";
 import CommentTextArea from "@molecules/CommentTextArea";
 import CommentCard from "@molecules/CommentCard";
-import { User, Comment as IComment } from "~/types";
+import { Profile, Comment as IComment } from "~/types";
 
 import "./style.scss";
 
@@ -10,7 +10,7 @@ export interface CommentProps {
     /**
      * 현재 접속중인 user
      */
-    user: User;
+    user: Profile;
     /**
      * Comment 리스트
      */

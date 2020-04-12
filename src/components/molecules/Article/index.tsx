@@ -4,7 +4,7 @@ import { IoMdEye as EyeIcon } from "react-icons/io";
 import { MdModeComment as CommentIcon } from "react-icons/md";
 import CommentContainer from "@molecules/CommentContainer";
 import { displayDate } from "~/utils";
-import { User, Article as IArticle, Comment } from "~/types";
+import { Profile, Article as IArticle, Comment } from "~/types";
 import "./style.scss";
 
 export interface ArticleTitleProps {
@@ -51,7 +51,7 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
 };
 
 export interface ArticleProps {
-    user: User;
+    user: Profile;
     article: IArticle;
     comments: Comment[];
 }

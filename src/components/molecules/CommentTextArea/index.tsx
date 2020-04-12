@@ -2,14 +2,14 @@ import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import Avatar from "@atoms/Avatar";
 import Button from "@atoms/Button";
-import { User } from "~/types";
+import { Profile } from "~/types";
 import "./style.scss";
 
 interface CommentTextAreaProps {
     /**
      * 현재 로그인 중인 유저
      */
-    user?: User;
+    user: Profile;
 }
 
 const CommentTextArea = (props: CommentTextAreaProps) => {

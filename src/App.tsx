@@ -1,15 +1,22 @@
 import React from "react";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
-
+import { useAuth, AuthProvider } from "./contexts/Auth";
+import Router from "~/routes";
 import "./index.scss";
-import { Home } from "./pages";
 
-const App = () => (
-    <Router>
-        <Switch>
-            <Route exact path="/" component={Home} />
-        </Switch>
-    </Router>
-);
+const App = () => {
+    const {
+        state: { user, isAuthenticated },
+    } = useAuth();
+
+    if (!user && isAuthenticated) {
+        return null;
+    }
+
+    return (
+        <AuthProvider>
+            <Router />
+        </AuthProvider>
+    );
+};
 
 export default App;
