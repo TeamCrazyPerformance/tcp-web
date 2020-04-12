@@ -2,8 +2,13 @@ import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { authReducer, initialState, AuthAction, AuthState } from "./reducer";
 import { getLocalStorage } from "~/utils";
 import { TOKEN_KEY, setToken, isTokenValid } from "~/apis/utils";
-import { getCurrentUser, logout } from "~/apis/Auth";
+import * as api from "~/apis/Auth";
 import Action from "./actions";
+
+function logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
+}
 
 type AuthContextProps = {
     state: AuthState;
@@ -12,7 +17,7 @@ type AuthContextProps = {
 
 const AuthContext = createContext<AuthContextProps>({
     state: initialState,
-    dispatch: () => initialState,
+    dispatch: () => initialState
 });
 
 export function AuthProvider(props: React.PropsWithChildren<{}>) {
@@ -37,11 +42,11 @@ export function AuthProvider(props: React.PropsWithChildren<{}>) {
     const fetchUser = () => {
         if (user || !isAuthenticated) return;
 
-        getCurrentUser()
-            .then((user) =>
+        api.getCurrentUser()
+            .then(user =>
                 userDispatch({ type: Action.LOAD_USER, payload: user })
             )
-            .catch((error) => console.log(error));
+            .catch(error => console.log(error));
     };
 
     useEffect(initAuth, []);
