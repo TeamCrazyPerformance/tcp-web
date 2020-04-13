@@ -19,6 +19,11 @@ export interface Profile {
     avatar: string;
 }
 
+export interface Category {
+    id: number;
+    name: string;
+}
+
 export interface Article {
     id: number;
 

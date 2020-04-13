@@ -7,7 +7,7 @@ type TokenUser = {
     user: Profile & { token: string };
 };
 
-function handleUserResponse({ user: { token, ...user } }: TokenUser) {
+export function handleUserResponse({ user: { token, ...user } }: TokenUser) {
     setLocalStorage(TOKEN_KEY, token);
     setToken(token);
     return user;
