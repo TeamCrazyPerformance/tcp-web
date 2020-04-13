@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "~/hooks";
-import { setToken } from "~/apis/utils";
+import { handleUserResponse } from "~/apis/Auth";
 import { useAuth, Action } from "~/contexts/Auth";
 
 const getStringValue = (args: string[] | string | null | undefined): string =>
@@ -24,21 +24,20 @@ const Redirect = () => {
             username,
             github,
             avatar,
-            token,
-        ].map((item) => getStringValue(item));
+            token
+        ].map(item => getStringValue(item));
 
         const user = {
             id,
             username,
             github,
             avatar,
-            token,
+            token
         };
-
-        setToken(token);
+        handleUserResponse({ user });
         authDispath({
             type: Action.LOAD_USER,
-            payload: user,
+            payload: user
         });
         history.replace("/");
     };
