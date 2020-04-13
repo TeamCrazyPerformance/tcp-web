@@ -1,5 +1,5 @@
 import API from "./utils";
-import { Article as IArticle } from "~/types";
+import { Article as IArticle, Category } from "~/types";
 
 type Articles = {
     articles: IArticle[];
@@ -10,20 +10,22 @@ type Article = {
     article: IArticle;
 };
 
-type Category = {
-    category: string[];
-};
-
 function limit(count: number, p: number = 0) {
     return `limit=${count}&offset=${p * count}`;
 }
 
-export function getCategories() {
-    return API.get<Category>(`/categories`);
+function categoryQuery(category?: string | Category) {
+    if (!category) return "";
+    const name = typeof category === "string" ? category : category.name;
+    return `category=${name}`;
 }
 
-export function getArticles(page: number) {
-    return API.get<Articles>(`/articles?${limit(10, page)}`);
+export function getArticles(page: number, category?: string | Category) {
+    const query = categoryQuery(category);
+
+    return API.get<Articles>(
+        `/articles?${query && `${query}&`}${limit(10, page)}`
+    ).then(res => res.data);
 }
 
 export function getArticle(id: number) {
