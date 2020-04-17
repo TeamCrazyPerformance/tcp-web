@@ -3,7 +3,7 @@ import {
     categoryReducer,
     initialState,
     CategoryAction,
-    CategoryState
+    CategoryState,
 } from "./reducer";
 import * as api from "~/apis/Category";
 import Action from "./actions";
@@ -15,7 +15,7 @@ type CategoryContextProps = {
 
 const CategoryContext = createContext<CategoryContextProps>({
     state: initialState,
-    dispatch: () => initialState
+    dispatch: () => initialState,
 });
 
 export function CategoryProvider(props: React.PropsWithChildren<{}>) {
@@ -23,19 +23,19 @@ export function CategoryProvider(props: React.PropsWithChildren<{}>) {
 
     const fetchCategory = () => {
         categoryDispatch({
-            type: Action.FETCH_LOADING
+            type: Action.FETCH_LOADING,
         });
 
         api.getCategories()
-            .then(categories =>
-                categoryDispatch({
+            .then((categories) => {
+                return categoryDispatch({
                     type: Action.FETCH_SUCCESS,
-                    payload: categories
-                })
-            )
+                    payload: categories,
+                });
+            })
             .catch(() =>
                 categoryDispatch({
-                    type: Action.FETCH_ERROR
+                    type: Action.FETCH_ERROR,
                 })
             );
     };
@@ -46,7 +46,7 @@ export function CategoryProvider(props: React.PropsWithChildren<{}>) {
         <CategoryContext.Provider
             value={{
                 state,
-                dispatch: categoryDispatch
+                dispatch: categoryDispatch,
             }}
             {...props}
         />
