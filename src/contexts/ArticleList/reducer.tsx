@@ -3,12 +3,16 @@ import Action from "./actions";
 
 export type ArticleListAction =
     | { type: Action.FETCH_ARTICLIES_LOADING }
-    | { type: Action.FETCH_ARTICLIES_SUCCESS; payload: { articles: Article[] } }
+    | {
+          type: Action.FETCH_ARTICLIES_SUCCESS;
+          payload: { articles: Article[]; articlesCount: number };
+      }
     | { type: Action.FETCH_ARTICLIES_ERROR }
     | { type: Action.SET_PAGE; page: number };
 
 export interface ArticleListState {
     articles: Article[];
+    articlesCount: number;
     loading: boolean;
     error: boolean;
     page: number;
@@ -16,9 +20,10 @@ export interface ArticleListState {
 
 export const initialState: ArticleListState = {
     articles: [],
+    articlesCount: 0,
     loading: false,
     error: false,
-    page: 0
+    page: 0,
 };
 
 export function ArticleListReducer(
@@ -30,8 +35,8 @@ export function ArticleListReducer(
             return { ...state, loading: true };
         }
         case Action.FETCH_ARTICLIES_SUCCESS: {
-            const { articles } = action.payload;
-            return { ...state, articles };
+            const { articles, articlesCount } = action.payload;
+            return { ...state, articles, articlesCount };
         }
         case Action.FETCH_ARTICLIES_ERROR: {
             return { ...state, error: true };
