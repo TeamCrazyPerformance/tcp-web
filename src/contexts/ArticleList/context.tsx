@@ -3,7 +3,7 @@ import {
     ArticleListReducer,
     initialState,
     ArticleListAction,
-    ArticleListState
+    ArticleListState,
 } from "./reducer";
 import * as api from "~/apis/Article";
 import Action from "./actions";
@@ -16,7 +16,7 @@ type ArticleListContextProps = {
 
 const ArticleListContext = createContext<ArticleListContextProps>({
     state: initialState,
-    dispatch: () => initialState
+    dispatch: () => initialState,
 });
 
 export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
@@ -25,12 +25,12 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
         initialState
     );
     const {
-        state: { categories, selectedTab }
+        state: { categories, selectedTab },
     } = useCategory();
 
     const fetchArticleList = () => {
         ArticleListDispatch({
-            type: Action.FETCH_ARTICLIES_LOADING
+            type: Action.FETCH_ARTICLIES_LOADING,
         });
 
         const { page } = state;
@@ -39,15 +39,15 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
         )?.name;
 
         api.getArticles(page, selectedCategory)
-            .then(articles =>
+            .then(payload =>
                 ArticleListDispatch({
                     type: Action.FETCH_ARTICLIES_SUCCESS,
-                    payload: articles
+                    payload,
                 })
             )
             .catch(() =>
                 ArticleListDispatch({
-                    type: Action.FETCH_ARTICLIES_ERROR
+                    type: Action.FETCH_ARTICLIES_ERROR,
                 })
             );
     };
@@ -58,7 +58,7 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
         <ArticleListContext.Provider
             value={{
                 state,
-                dispatch: ArticleListDispatch
+                dispatch: ArticleListDispatch,
             }}
             {...props}
         />

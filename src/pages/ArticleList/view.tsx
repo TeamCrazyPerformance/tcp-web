@@ -23,8 +23,6 @@ const ArticleList = () => {
         [categories]
     );
 
-    console.log(articles[0]);
-
     return (
         <>
             <Header />
