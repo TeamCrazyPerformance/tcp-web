@@ -25,7 +25,7 @@ export function getArticles(page: number, category?: string | Category) {
 
     return API.get<Articles>(
         `/articles?${query && `${query}&`}${limit(10, page)}`
-    ).then(res => res.data);
+    ).then(({ data }) => data);
 }
 
 export function getArticle(id: number) {
