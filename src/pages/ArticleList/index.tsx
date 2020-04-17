@@ -1,11 +1,16 @@
 import React from "react";
-import Header from "@organisms/Header";
+import { ArticleListProvider } from "~/contexts/ArticleList";
+import { CategoryProvider } from "~/contexts/Category";
+import View from "./view";
 
-const ArticleList = () => (
-    <>
-        <Header />
-        <main>welcome, ArticleList page!</main>
-    </>
-);
+const ArticleList = () => {
+    return (
+        <ArticleListProvider>
+            <CategoryProvider>
+                <View />
+            </CategoryProvider>
+        </ArticleListProvider>
+    );
+};
 
 export default ArticleList;
