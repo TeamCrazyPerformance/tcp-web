@@ -2,81 +2,64 @@ import React from "react";
 import "./style.scss";
 import { FaCommentAlt as CommentIcon } from "react-icons/fa";
 import { displayDate } from "~/utils";
+import { Article } from "~/types";
 
 const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";
 const MAX_DISPLAY_NUM = 999;
-interface PostProps {
-    /**
-     * 게시글 번호
-     */
-    no: number | string;
-    /**
-     * 제목
-     */
-    title: string;
-    /**
-     * 댓글 수
-     */
-    commentCount: number;
-    /**
-     * 작성일자
-     */
-    date: Date | string;
-    /**
-     * 작성자
-     */
-    writer: string;
-    /**
-     * 조회수
-     */
-    viewCount: number;
-}
 
 export interface BulletinBoardProps {
     /**
      * 테이블 칼럼 이름
      */
-    columns: string[];
+    columns?: string[];
     /**
      * 포스트들
      */
-    posts?: PostProps[];
+    articles?: Article[];
 }
 
-const Columns = (props: PostProps) => {
-    const { no, title, commentCount, date, writer, viewCount } = props;
-    const className = no === NOTICE_KO ? CLASSNAME_FOR_NOTICE : "";
-    const dateView = displayDate(date);
+const Columns = (props: Article) => {
+    const {
+        id,
+        title,
+        commentCount,
+        createdAt,
+        updatedAt,
+        author,
+        viewCount,
+    } = props;
+    const className = id === NOTICE_KO ? CLASSNAME_FOR_NOTICE : "";
+    const dateView = displayDate(updatedAt || createdAt);
     const countView =
         commentCount > MAX_DISPLAY_NUM ? MAX_DISPLAY_NUM + "+" : commentCount;
 
     return (
         <article className={className}>
-            <span>{no}</span>
+            <span>{id}</span>
             <h3>{title}</h3>
             <span className="comment_count_wrapper">
                 <CommentIcon /> {countView}
             </span>
             <time dateTime={dateView}>{dateView}</time>
-            <span>{writer}</span>
+            <span>{author}</span>
             <span>{viewCount}</span>
         </article>
     );
 };
 
 const BulletinBoard = (props: BulletinBoardProps) => {
-    const { columns, posts = [] } = props;
+    const { columns, articles = [] } = props;
 
     return (
         <section>
             <div className="board_caption">
-                {columns.map((col) => (
+                {columns?.map((col) => (
                     <span> {col} </span>
                 ))}
             </div>
-            {posts.map((post: PostProps) => (
-                <Columns {...post} />
+            {articles.map((article: Article) => (
+                <Columns {...article} />
             ))}
         </section>
     );
@@ -84,7 +67,7 @@ const BulletinBoard = (props: BulletinBoardProps) => {
 
 BulletinBoard.defaultProps = {
     columns: ["번호", "제목", "", "날짜", "글쓴이", "조회수"],
-    posts: [],
+    articles: [],
 };
 
 export default BulletinBoard;

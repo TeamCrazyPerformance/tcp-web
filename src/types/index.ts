@@ -25,7 +25,7 @@ export interface Category {
 }
 
 export interface Article {
-    id: number;
+    id: number | string;
 
     author: Profile;
     title: string;

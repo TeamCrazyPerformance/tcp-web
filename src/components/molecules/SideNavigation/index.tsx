@@ -17,8 +17,9 @@ interface SideNavigationProps {
 
 const SideNavigation = (props: SideNavigationProps) => {
     const { items, activeItemId } = props;
+
     const [currentItemId, setActiveItemId] = useState(
-        activeItemId || items[0].itemId
+        activeItemId || items[0]?.itemId
     );
     const handleClick = (e: SyntheticEvent<HTMLDivElement>) => {
         if (!(e.target instanceof HTMLDivElement && e.target.dataset)) return;
@@ -43,6 +44,8 @@ const SideNavigation = (props: SideNavigationProps) => {
             )),
         [items, currentItemId]
     );
+
+    if (!items.length) return null;
 
     return (
         <div className="side_navigation_container" onClick={handleClick}>
