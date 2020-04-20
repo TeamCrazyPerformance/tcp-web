@@ -1,0 +1,8 @@
+.body_wrapper {
+    display: flex;
+
+    & main {
+        flex: 1;
+        margin-bottom: auto;
+    }
+}
