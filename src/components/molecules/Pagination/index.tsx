@@ -2,9 +2,9 @@ import React from "react";
 import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import "./style.scss";
 
-type PagianationProps = ReactPaginateProps;
+export type PaginationProps = ReactPaginateProps;
 
-const Pagination = (props: PagianationProps) => {
+const Pagination = (props: PaginationProps) => {
     const { pageCount, onPageChange, ...rest } = props;
     return (
         <ReactPaginate
