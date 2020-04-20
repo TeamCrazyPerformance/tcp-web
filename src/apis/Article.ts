@@ -1,5 +1,5 @@
 import API from "./utils";
-import { Article as IArticle, ArticleInfo } from "~/types";
+import { Article as IArticle, ArticleInfo, Comment } from "~/types";
 
 type ArticleList = {
     articles: ArticleInfo[];
@@ -8,6 +8,7 @@ type ArticleList = {
 
 type Article = {
     article: IArticle;
+    comments: Comment[];
 };
 
 function limit(count: number, p: number = 0) {
@@ -28,8 +29,8 @@ export function getArticles(page: number, category?: number) {
     ).then(({ data }) => data);
 }
 
-export function getArticle(id: number) {
-    return API.get<Article>(`/articles/${id}`);
+export function getArticle(id: string) {
+    return API.get<Article>(`/articles/${id}`).then(res => res.data);
 }
 
 export function updateArticle(article: {
