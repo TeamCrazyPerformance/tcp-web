@@ -21,7 +21,9 @@ export interface Profile {
 
 export interface Category {
     id: number;
+    to?: string;
     name: string;
+    subItems?: Category[];
 }
 
 export interface Article {
