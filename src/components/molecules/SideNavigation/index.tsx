@@ -21,8 +21,8 @@ const SideNavigation = (props: SideNavigationProps) => {
     const [currentItemId, setActiveItemId] = useState(
         activeItemId || items[0]?.itemId
     );
-    const handleClick = (e: SyntheticEvent<HTMLDivElement>) => {
-        if (!(e.target instanceof HTMLDivElement && e.target.dataset)) return;
+    const handleClick = (e: SyntheticEvent<HTMLElement>) => {
+        if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
 
         let datasetId;
         if (!(datasetId = e.target.dataset.itemId)) return;
@@ -48,9 +48,9 @@ const SideNavigation = (props: SideNavigationProps) => {
     if (!items.length) return null;
 
     return (
-        <div className="side_navigation_container" onClick={handleClick}>
-            {SideNavigationItems}
-        </div>
+        <section className="side_navigation_container" onClick={handleClick}>
+            <ul>{SideNavigationItems}</ul>
+        </section>
     );
 };
 

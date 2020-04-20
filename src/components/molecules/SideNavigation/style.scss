@@ -6,4 +6,10 @@ $sn-color: #58595b;
 
     border-right: 0.05rem solid $sn-color;
     font-size: 0.8rem;
+
+    & .internal_link {
+        padding: 0;
+        line-height: normal;
+        text-decoration: none;
+    }
 }
