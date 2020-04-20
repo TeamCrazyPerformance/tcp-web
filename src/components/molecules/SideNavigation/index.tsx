@@ -21,15 +21,18 @@ const SideNavigation = (props: SideNavigationProps) => {
     const [currentItemId, setActiveItemId] = useState(
         activeItemId || items[0]?.id
     );
+    const [childActiveId, setChildActiveId] = useState("");
+
     const handleClick = (e: SyntheticEvent<HTMLElement>) => {
         if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
 
         const datasetId = e.target.dataset.itemId;
         if (!datasetId) return;
 
-        const clickedItemId = datasetId.split("-")[0];
+        const [parent, child] = datasetId.split("-");
 
-        setActiveItemId(clickedItemId);
+        setActiveItemId(parent);
+        setChildActiveId(child);
     };
 
     const SideNavigationItems = useMemo(
@@ -39,10 +42,11 @@ const SideNavigation = (props: SideNavigationProps) => {
                     data-item-id={item.id}
                     key={item.id}
                     active={currentItemId === item.id.toString()}
+                    childActive={childActiveId}
                     {...item}
                 />
             )),
-        [items, currentItemId]
+        [items, currentItemId, childActiveId]
     );
 
     if (!items.length) return null;
