@@ -26,6 +26,7 @@ export interface Category {
 
 export interface Article {
     id: number | string;
+    isNotice?: boolean;
 
     author: Profile;
     title: string;
@@ -37,6 +38,10 @@ export interface Article {
     createdAt: Date;
     updatedAt?: Date;
 }
+
+export type ArticleInfo = Omit<Article, "contents" | "author"> & {
+    author: string;
+};
 
 export interface Comment {
     id: number;
