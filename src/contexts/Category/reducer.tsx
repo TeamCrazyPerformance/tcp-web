@@ -7,7 +7,7 @@ export type CategoryAction =
     | { type: Action.FETCH_LOADING }
     | { type: Action.FETCH_SUCCESS; payload: { categories: Category[] } }
     | { type: Action.FETCH_ERROR }
-    | { type: Action.SET_TAB; payload: Category };
+    | { type: Action.SET_TAB; payload: { id: number } };
 
 export interface CategoryState {
     categories: Array<Category>;
@@ -20,7 +20,7 @@ export const initialState: CategoryState = {
     categories: [],
     loading: false,
     error: false,
-    selectedTab: DEFAULT_SELECTED_ID
+    selectedTab: DEFAULT_SELECTED_ID,
 };
 
 export function categoryReducer(

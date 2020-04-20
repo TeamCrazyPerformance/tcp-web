@@ -7,6 +7,7 @@ import {
 } from "./reducer";
 import * as api from "~/apis/Category";
 import Action from "./actions";
+import { useQuery } from "~/hooks";
 
 type CategoryContextProps = {
     state: CategoryState;
@@ -20,6 +21,7 @@ const CategoryContext = createContext<CategoryContextProps>({
 
 export function CategoryProvider(props: React.PropsWithChildren<{}>) {
     const [state, categoryDispatch] = useReducer(categoryReducer, initialState);
+    const { category } = useQuery();
 
     const fetchCategory = () => {
         categoryDispatch({
@@ -27,7 +29,7 @@ export function CategoryProvider(props: React.PropsWithChildren<{}>) {
         });
 
         api.getCategories()
-            .then((categories) => {
+            .then(categories => {
                 return categoryDispatch({
                     type: Action.FETCH_SUCCESS,
                     payload: categories,
@@ -40,7 +42,18 @@ export function CategoryProvider(props: React.PropsWithChildren<{}>) {
             );
     };
 
+    const setCategory = () => {
+        if (!category) return;
+
+        const id = Array.isArray(category)
+            ? parseInt(category[0], 10)
+            : parseInt(category, 10);
+
+        categoryDispatch({ type: Action.SET_TAB, payload: { id } });
+    };
+
     useEffect(fetchCategory, []);
+    useEffect(setCategory, [category]);
 
     return (
         <CategoryContext.Provider

@@ -5,8 +5,21 @@ type Category = {
     categories: Array<ICategory>;
 };
 
+function addLink(categories: ICategory[]): ICategory[] {
+    return categories.map(category => {
+        if (!category.subItems)
+            return { ...category, to: `/articles?category=${category.id}` };
+
+        return { ...category, subItems: addLink(category.subItems) };
+    });
+}
+
 export function getCategories() {
-    return API.get<Category>(`/categories`).then(res => res.data);
+    return API.get<Category>(`/categories`)
+        .then(res => res.data)
+        .then(({ categories }) => {
+            return { categories: addLink(categories) };
+        });
 }
 
 export function updateArticle(category: ICategory) {

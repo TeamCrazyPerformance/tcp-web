@@ -56,11 +56,11 @@ const BulletinBoard = (props: ArticleListProps) => {
         <section>
             <div className="board_caption">
                 {columns?.map(col => (
-                    <span> {col} </span>
+                    <span key={col}> {col} </span>
                 ))}
             </div>
             {articles.map((article: ArticleInfo) => (
-                <Columns {...article} />
+                <Columns key={article.id} {...article} />
             ))}
         </section>
     );
