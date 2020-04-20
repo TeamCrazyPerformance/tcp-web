@@ -14,7 +14,8 @@
 }
 
 html,
-body {
+body,
+#root {
     height: 100%;
     width: 100%;
     font-size: 16px;
@@ -35,7 +36,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 5rem;
-    height: auto;
+    height: 100%;
 }
 
 @media all and(max-width: 768px) {
