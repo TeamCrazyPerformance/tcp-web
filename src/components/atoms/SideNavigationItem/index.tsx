@@ -7,7 +7,7 @@ export interface SideNavigationItemProps {
     /**
      * 식별자
      */
-    itemId: string;
+    id: number | string;
     /**
      * 라벨에 표시될 내용
      */
@@ -32,8 +32,8 @@ export interface SideNavigationItemProps {
 }
 
 export interface SideNavigationSubItemsProps {
-    parentId: string;
-    activeItemId: string;
+    parentId: number | string;
+    activeItemId: number | string;
     items: SideNavigationItemProps[];
     onClick: (e: SyntheticEvent<HTMLElement>) => void;
 }
@@ -47,12 +47,11 @@ const SideNavigationSubItems = ({
     <section className="side_navigation_sub_container" onClick={onClick}>
         <ul>
             {items.map(item => (
-                <li>
+                <li key={item.id}>
                     <SideNavigationItem
                         {...item}
-                        itemId={`${parentId}-${item.itemId}`}
-                        key={item.itemId}
-                        active={activeItemId === item.itemId}
+                        id={`${parentId}-${item.id}`}
+                        active={activeItemId === item.id.toString()}
                         className="subItem"
                     />
                 </li>
@@ -68,46 +67,60 @@ export const SideNavigationItem = (props: SideNavigationItemProps) => {
         onClick,
         active = false,
         children = "",
-        itemId,
+        id,
         subItems = [],
         className = "",
     } = props;
-    const [currentItemId, setActiveItemId] = useState<string>(
-        subItems.length ? subItems[0].itemId : ""
+    const [currentItemId, setActiveItemId] = useState<number | string>(
+        subItems.length ? subItems[0].id : ""
     );
 
     const handleClick = (e: SyntheticEvent<HTMLElement>) => {
-        if (subItems.length) setActiveItemId(subItems[0].itemId);
+        if (subItems.length) setActiveItemId(subItems[0].id);
         if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
 
-        let datasetId;
-        if (!(datasetId = e.target.dataset.itemId)) return;
+        const datasetId = e.target.dataset.itemId;
+        if (!datasetId) return;
 
-        if (datasetId.startsWith(`${itemId}-`)) {
+        if (datasetId.startsWith(`${id}-`)) {
             setActiveItemId(datasetId.split("-")[1]);
         }
     };
 
     return (
-        <StyledLink to={to}>
-            <div
-                data-item-id={itemId}
-                onClick={onClick}
-                className={`side_navigation_item ${
-                    active ? "active" : ""
-                } ${className}`}
-            >
-                {children || name}
-                {active && !!subItems.length && (
-                    <SideNavigationSubItems
-                        parentId={itemId}
-                        activeItemId={currentItemId}
-                        onClick={handleClick}
-                        items={subItems}
-                    />
-                )}
-            </div>
-        </StyledLink>
+        <>
+            {!!subItems.length ? (
+                <div
+                    data-item-id={id}
+                    onClick={onClick}
+                    className={`side_navigation_item ${
+                        active ? "active" : ""
+                    } ${className}`}
+                >
+                    {children || name}
+                    {active && (
+                        <SideNavigationSubItems
+                            parentId={id}
+                            activeItemId={currentItemId}
+                            onClick={handleClick}
+                            items={subItems}
+                        />
+                    )}
+                </div>
+            ) : (
+                <StyledLink to={to}>
+                    <div
+                        data-item-id={id}
+                        onClick={onClick}
+                        className={`side_navigation_item ${
+                            active ? "active" : ""
+                        } ${className}`}
+                    >
+                        {children || name}
+                    </div>
+                </StyledLink>
+            )}
+        </>
     );
 };
 

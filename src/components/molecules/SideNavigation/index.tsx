@@ -19,27 +19,27 @@ const SideNavigation = (props: SideNavigationProps) => {
     const { items, activeItemId } = props;
 
     const [currentItemId, setActiveItemId] = useState(
-        activeItemId || items[0]?.itemId
+        activeItemId || items[0]?.id
     );
     const handleClick = (e: SyntheticEvent<HTMLElement>) => {
         if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
 
-        let datasetId;
-        if (!(datasetId = e.target.dataset.itemId)) return;
+        const datasetId = e.target.dataset.itemId;
+        if (!datasetId) return;
 
         const clickedItemId = datasetId.split("-")[0];
+
         setActiveItemId(clickedItemId);
     };
 
     const SideNavigationItems = useMemo(
         () =>
-            items.map(({ itemId, ...props }) => (
+            items.map(item => (
                 <SideNavigationItem
-                    data-item-id={itemId}
-                    {...props}
-                    itemId={itemId}
-                    key={itemId}
-                    active={currentItemId === itemId}
+                    data-item-id={item.id}
+                    key={item.id}
+                    active={currentItemId === item.id.toString()}
+                    {...item}
                 />
             )),
         [items, currentItemId]

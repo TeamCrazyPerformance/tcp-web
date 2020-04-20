@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Header from "@organisms/Header";
 import SideNavigation from "@molecules/SideNavigation";
 import BulletinBoard from "@organisms/BulletinBoard";
@@ -18,21 +18,12 @@ const ArticleList = () => {
         state: { categories },
     } = useCategory();
 
-    const items = useMemo(
-        () =>
-            categories?.map(({ id, ...props }) => ({
-                itemId: id.toString(),
-                ...props,
-            })),
-        [categories]
-    );
-
     return (
         <>
             <Header />
             <div className="body_wrapper">
                 <nav>
-                    <SideNavigation items={items} />
+                    <SideNavigation items={categories} />
                 </nav>
                 <main>
                     <BulletinBoard
