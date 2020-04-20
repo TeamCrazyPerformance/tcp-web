@@ -1,6 +1,6 @@
-import { BulletinBoardProps } from ".";
+import { ArticleListProps } from ".";
 
-const bulletinBoardMock: BulletinBoardProps = {
+const bulletinBoardMock: ArticleListProps = {
     articles: [
         {
             id: 37,
@@ -35,22 +35,22 @@ const bulletinBoardMock: BulletinBoardProps = {
             author: "이송열",
             viewCount: 10,
         },
-        // {
-        //     id: 33,
-        //     title: "김희라 짱짱 ",
-        //     commentCount: 12,
-        //     createdAt: new Date("2020-03-02"),
-        //     author: "이송열",
-        //     viewCount: 10,
-        // },
-        // {
-        //     id: 33,
-        //     title: "글 제목이다",
-        //     commentCount: 12,
-        //     createdAt: new Date("2020-03-02"),
-        //     author: "이송열",
-        //     viewCount: 10,
-        // },
+        {
+            id: 33,
+            title: "김희라 짱짱 ",
+            commentCount: 12,
+            createdAt: new Date("2020-03-02"),
+            author: "이송열",
+            viewCount: 10,
+        },
+        {
+            id: 33,
+            title: "글 제목이다",
+            commentCount: 12,
+            createdAt: new Date("2020-03-02"),
+            author: "이송열",
+            viewCount: 10,
+        },
     ],
 };
 

@@ -1,11 +1,11 @@
 import React, { CSSProperties } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import bulletinBoardMock from "./mock";
-import BulletinBoard from ".";
+import ArticleListMock from "./mock";
+import ArticleList from ".";
 
 export default {
-    title: "Molecules / BulletinBoard",
-    component: BulletinBoard,
+    title: "Molecules / ArticleList",
+    component: ArticleList,
     decorators: [withKnobs],
 };
 
@@ -19,6 +19,6 @@ const WrapperStyle: CSSProperties = {
 
 export const index = () => (
     <div style={WrapperStyle}>
-        <BulletinBoard {...bulletinBoardMock} />
+        <ArticleList {...ArticleListMock} />
     </div>
 );

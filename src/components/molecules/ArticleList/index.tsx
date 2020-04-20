@@ -8,7 +8,7 @@ const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";
 const MAX_DISPLAY_NUM = 999;
 
-export interface BulletinBoardProps {
+export interface ArticleListProps {
     /**
      * 테이블 칼럼 이름
      */
@@ -49,7 +49,7 @@ const Columns = (props: ArticleInfo) => {
     );
 };
 
-const BulletinBoard = (props: BulletinBoardProps) => {
+const BulletinBoard = (props: ArticleListProps) => {
     const { columns, articles = [] } = props;
 
     return (
