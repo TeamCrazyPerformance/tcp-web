@@ -1,4 +1,5 @@
 import React, { useState, SyntheticEvent } from "react";
+import StyledLink from "@atoms/StyledLink";
 import "./style.scss";
 
 export interface SideNavigationItemProps {
@@ -16,6 +17,10 @@ export interface SideNavigationItemProps {
      */
     active?: boolean;
     /**
+     * 클릭시 이동할 곳
+     */
+    to?: string;
+    /**
      * 하위 목록 리스트
      */
     subItems?: SideNavigationItemProps[];
@@ -30,45 +35,50 @@ export interface SideNavigationSubItemsProps {
     parentId: string;
     activeItemId: string;
     items: SideNavigationItemProps[];
-    onClick: (e: SyntheticEvent<HTMLDivElement>) => void;
+    onClick: (e: SyntheticEvent<HTMLElement>) => void;
 }
 
 const SideNavigationSubItems = ({
     parentId,
     activeItemId,
     items,
-    onClick
+    onClick,
 }: SideNavigationSubItemsProps) => (
-    <div className="side_navigation_sub_container" onClick={onClick}>
-        {items.map(item => (
-            <SideNavigationItem
-                {...item}
-                itemId={`${parentId}-${item.itemId}`}
-                key={item.itemId}
-                active={activeItemId === item.itemId}
-                className="subItem"
-            />
-        ))}
-    </div>
+    <section className="side_navigation_sub_container" onClick={onClick}>
+        <ul>
+            {items.map(item => (
+                <li>
+                    <SideNavigationItem
+                        {...item}
+                        itemId={`${parentId}-${item.itemId}`}
+                        key={item.itemId}
+                        active={activeItemId === item.itemId}
+                        className="subItem"
+                    />
+                </li>
+            ))}
+        </ul>
+    </section>
 );
 
 export const SideNavigationItem = (props: SideNavigationItemProps) => {
     const {
         name,
+        to,
         onClick,
         active = false,
         children = "",
         itemId,
         subItems = [],
-        className = ""
+        className = "",
     } = props;
     const [currentItemId, setActiveItemId] = useState<string>(
         subItems.length ? subItems[0].itemId : ""
     );
 
-    const handleClick = (e: SyntheticEvent<HTMLDivElement>) => {
+    const handleClick = (e: SyntheticEvent<HTMLElement>) => {
         if (subItems.length) setActiveItemId(subItems[0].itemId);
-        if (!(e.target instanceof HTMLDivElement && e.target.dataset)) return;
+        if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
 
         let datasetId;
         if (!(datasetId = e.target.dataset.itemId)) return;
@@ -79,23 +89,25 @@ export const SideNavigationItem = (props: SideNavigationItemProps) => {
     };
 
     return (
-        <div
-            data-item-id={itemId}
-            onClick={onClick}
-            className={`side_navigation_item ${
-                active ? "active" : ""
-            } ${className}`}
-        >
-            {children || name}
-            {active && !!subItems.length && (
-                <SideNavigationSubItems
-                    parentId={itemId}
-                    activeItemId={currentItemId}
-                    onClick={handleClick}
-                    items={subItems}
-                />
-            )}
-        </div>
+        <StyledLink to={to}>
+            <div
+                data-item-id={itemId}
+                onClick={onClick}
+                className={`side_navigation_item ${
+                    active ? "active" : ""
+                } ${className}`}
+            >
+                {children || name}
+                {active && !!subItems.length && (
+                    <SideNavigationSubItems
+                        parentId={itemId}
+                        activeItemId={currentItemId}
+                        onClick={handleClick}
+                        items={subItems}
+                    />
+                )}
+            </div>
+        </StyledLink>
     );
 };
 
@@ -103,7 +115,7 @@ SideNavigationItem.deaultProps = {
     active: false,
     children: "",
     subItems: [],
-    className: ""
+    className: "",
 };
 
 export default SideNavigationItem;
