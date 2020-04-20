@@ -27,18 +27,20 @@ interface StyledLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 function StyledLink(props: StyledLinkProps) {
-    const { to, href, name } = props;
-    if (to)
-        return (
-            <Link className="internal_link" to={to}>
-                {name}
-            </Link>
-        );
+    const { to, href, name, children } = props;
 
     return (
-        <a href={href} className="a_href">
-            {name || props.children}
-        </a>
+        <>
+            {to ? (
+                <Link className="internal_link" to={to}>
+                    {children || name}
+                </Link>
+            ) : (
+                <a href={href} className="a_href">
+                    {children || name}
+                </a>
+            )}
+        </>
     );
 }
 
