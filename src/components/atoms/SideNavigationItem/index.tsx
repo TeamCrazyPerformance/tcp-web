@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from "react";
+import React, { SyntheticEvent } from "react";
 import StyledLink from "@atoms/StyledLink";
 import "./style.scss";
 
@@ -25,6 +25,10 @@ export interface SideNavigationItemProps {
      */
     subItems?: SideNavigationItemProps[];
     /**
+     * 자식의 클릭된 상태
+     */
+    childActive?: string;
+    /**
      * 이벤트 핸들러
      */
     onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
@@ -35,7 +39,7 @@ export interface SideNavigationSubItemsProps {
     parentId: number | string;
     activeItemId: number | string;
     items: SideNavigationItemProps[];
-    onClick: (e: SyntheticEvent<HTMLElement>) => void;
+    onClick?: (e: SyntheticEvent<HTMLElement>) => void;
 }
 
 const SideNavigationSubItems = ({
@@ -64,61 +68,32 @@ export const SideNavigationItem = (props: SideNavigationItemProps) => {
     const {
         name,
         to,
-        onClick,
         active = false,
         children = "",
         id,
         subItems = [],
+        childActive,
         className = "",
     } = props;
-    const [currentItemId, setActiveItemId] = useState<number | string>(
-        subItems.length ? subItems[0].id : ""
-    );
-
-    const handleClick = (e: SyntheticEvent<HTMLElement>) => {
-        if (subItems.length) setActiveItemId(subItems[0].id);
-        if (!(e.target instanceof HTMLElement && e.target.dataset)) return;
-
-        const datasetId = e.target.dataset.itemId;
-        if (!datasetId) return;
-
-        if (datasetId.startsWith(`${id}-`)) {
-            setActiveItemId(datasetId.split("-")[1]);
-        }
-    };
 
     return (
         <>
-            {!!subItems.length ? (
+            <StyledLink to={to}>
                 <div
                     data-item-id={id}
-                    onClick={onClick}
                     className={`side_navigation_item ${
                         active ? "active" : ""
                     } ${className}`}
                 >
                     {children || name}
-                    {active && (
-                        <SideNavigationSubItems
-                            parentId={id}
-                            activeItemId={currentItemId}
-                            onClick={handleClick}
-                            items={subItems}
-                        />
-                    )}
                 </div>
-            ) : (
-                <StyledLink to={to}>
-                    <div
-                        data-item-id={id}
-                        onClick={onClick}
-                        className={`side_navigation_item ${
-                            active ? "active" : ""
-                        } ${className}`}
-                    >
-                        {children || name}
-                    </div>
-                </StyledLink>
+            </StyledLink>
+            {active && !!subItems.length && (
+                <SideNavigationSubItems
+                    parentId={id}
+                    activeItemId={childActive || ""}
+                    items={subItems}
+                />
             )}
         </>
     );

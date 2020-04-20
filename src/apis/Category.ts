@@ -7,10 +7,13 @@ type Category = {
 
 function addLink(categories: ICategory[]): ICategory[] {
     return categories.map(category => {
-        if (!category.subItems)
-            return { ...category, to: `/articles?category=${category.id}` };
-
-        return { ...category, subItems: addLink(category.subItems) };
+        return !category.subItems
+            ? { ...category, to: `/articles?category=${category.id}` }
+            : {
+                  ...category,
+                  to: `/articles?category=${category.id}`,
+                  subItems: addLink(category.subItems),
+              };
     });
 }
 

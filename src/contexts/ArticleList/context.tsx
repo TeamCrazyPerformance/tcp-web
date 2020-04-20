@@ -25,7 +25,7 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
         initialState
     );
     const {
-        state: { categories, selectedTab },
+        state: { selectedTab },
     } = useCategory();
 
     const fetchArticleList = () => {
@@ -33,12 +33,7 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
             type: Action.FETCH_ARTICLIES_LOADING,
         });
 
-        const { page } = state;
-        const selectedCategory = categories.find(
-            category => category.id === selectedTab
-        )?.name;
-
-        api.getArticles(page, selectedCategory)
+        api.getArticles(state.page, selectedTab)
             .then(payload =>
                 ArticleListDispatch({
                     type: Action.FETCH_ARTICLIES_SUCCESS,

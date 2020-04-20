@@ -5,11 +5,11 @@ import View from "./view";
 
 const ArticleList = () => {
     return (
-        <ArticleListProvider>
-            <CategoryProvider>
+        <CategoryProvider>
+            <ArticleListProvider>
                 <View />
-            </CategoryProvider>
-        </ArticleListProvider>
+            </ArticleListProvider>
+        </CategoryProvider>
     );
 };
 
