@@ -56,8 +56,8 @@ export interface ArticleProps {
     comments: Comment[];
 }
 
-const parse = (line: string) => (
-    <span>
+const parse = (line: string, idx: number) => (
+    <span key={idx}>
         {line}
         <br />
     </span>

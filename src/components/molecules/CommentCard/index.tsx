@@ -45,8 +45,8 @@ const CommentCard = (props: CommentCardProps) => {
                     </span>
                 </div>
                 <div className="comment_body">
-                    {contents.split("\n").map((line) => (
-                        <span>
+                    {contents.split("\n").map((line, idx) => (
+                        <span key={idx}>
                             {line}
                             <br />
                         </span>
