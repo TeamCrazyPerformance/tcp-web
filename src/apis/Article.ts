@@ -1,8 +1,8 @@
 import API from "./utils";
-import { Article as IArticle, Category } from "~/types";
+import { Article as IArticle, Category, ArticleInfo } from "~/types";
 
-type Articles = {
-    articles: IArticle[];
+type ArticleList = {
+    articles: ArticleInfo[];
     articlesCount: number;
 };
 
@@ -23,7 +23,7 @@ function categoryQuery(category?: string | Category) {
 export function getArticles(page: number, category?: string | Category) {
     const query = categoryQuery(category);
 
-    return API.get<Articles>(
+    return API.get<ArticleList>(
         `/articles?${query && `${query}&`}${limit(10, page)}`
     ).then(({ data }) => data);
 }

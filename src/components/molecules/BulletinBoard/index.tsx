@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import { FaCommentAlt as CommentIcon } from "react-icons/fa";
 import { displayDate } from "~/utils";
-import { Article } from "~/types";
+import { ArticleInfo } from "~/types";
 
 const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";
@@ -16,12 +16,13 @@ export interface BulletinBoardProps {
     /**
      * 포스트들
      */
-    articles?: Article[];
+    articles?: ArticleInfo[];
 }
 
-const Columns = (props: Article) => {
+const Columns = (props: ArticleInfo) => {
     const {
         id,
+        isNotice,
         title,
         commentCount,
         createdAt,
@@ -29,14 +30,14 @@ const Columns = (props: Article) => {
         author,
         viewCount,
     } = props;
-    const className = id === NOTICE_KO ? CLASSNAME_FOR_NOTICE : "";
+    const className = isNotice ? CLASSNAME_FOR_NOTICE : "";
     const dateView = displayDate(updatedAt || createdAt);
     const countView =
         commentCount > MAX_DISPLAY_NUM ? MAX_DISPLAY_NUM + "+" : commentCount;
 
     return (
         <article className={className}>
-            <span>{id}</span>
+            <span>{isNotice ? NOTICE_KO : id}</span>
             <h3>{title}</h3>
             <span className="comment_count_wrapper">
                 <CommentIcon /> {countView}
@@ -54,11 +55,11 @@ const BulletinBoard = (props: BulletinBoardProps) => {
     return (
         <section>
             <div className="board_caption">
-                {columns?.map((col) => (
+                {columns?.map(col => (
                     <span> {col} </span>
                 ))}
             </div>
-            {articles.map((article: Article) => (
+            {articles.map((article: ArticleInfo) => (
                 <Columns {...article} />
             ))}
         </section>
