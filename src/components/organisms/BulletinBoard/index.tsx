@@ -20,12 +20,7 @@ const BulletinBoard = (props: BulletinBoardProps) => {
         <div className="article_list">
             <ArticleList articles={articles} />
             <div className="article_list_pagination">
-                <Pagination
-                    pageCount={pageCount}
-                    onPageChange={onPageChange}
-                    marginPagesDisplayed={1}
-                    pageRangeDisplayed={3}
-                />
+                <Pagination pageCount={pageCount} onPageChange={onPageChange} />
             </div>
         </div>
     );
