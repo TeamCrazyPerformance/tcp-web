@@ -1,14 +1,18 @@
 import React, { useMemo } from "react";
 import Header from "@organisms/Header";
 import SideNavigation from "@molecules/SideNavigation";
-import BulletionBoard from "@molecules/BulletinBoard";
-import { useArticleList } from "~/contexts/ArticleList";
+import BulletinBoard from "@organisms/BulletinBoard";
+import {
+    useArticleList,
+    Action as ArticleListAction,
+} from "~/contexts/ArticleList";
 import { useCategory } from "~/contexts/Category";
 import "./style.scss";
 
 const ArticleList = () => {
     const {
-        state: { articles },
+        state: { articles, articlesCount },
+        dispatch: articleListDispatch,
     } = useArticleList();
     const {
         state: { categories },
@@ -31,7 +35,16 @@ const ArticleList = () => {
                     <SideNavigation items={items} />
                 </nav>
                 <main>
-                    <BulletionBoard articles={articles} />
+                    <BulletinBoard
+                        articles={articles}
+                        articlesCount={articlesCount}
+                        onPageChange={({ selected: page }) => {
+                            articleListDispatch({
+                                type: ArticleListAction.SET_PAGE,
+                                page,
+                            });
+                        }}
+                    />
                 </main>
             </div>
         </>
