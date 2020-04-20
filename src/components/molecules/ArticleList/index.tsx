@@ -1,4 +1,5 @@
 import React from "react";
+import StyledLink from "@atoms/StyledLink";
 import "./style.scss";
 import { FaCommentAlt as CommentIcon } from "react-icons/fa";
 import { displayDate } from "~/utils";
@@ -60,7 +61,9 @@ const BulletinBoard = (props: ArticleListProps) => {
                 ))}
             </div>
             {articles.map((article: ArticleInfo) => (
-                <Columns key={article.id} {...article} />
+                <StyledLink to={`/article/${article.id}`} key={article.id}>
+                    <Columns {...article} />
+                </StyledLink>
             ))}
         </section>
     );

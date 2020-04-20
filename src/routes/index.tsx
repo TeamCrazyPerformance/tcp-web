@@ -19,7 +19,7 @@ export default () => (
             <Route path="/signup" component={SignUp} />
             <Route path="/redirect" component={Redirect} />
             <Route path="/articles" component={ArticleList} />
-            <PrivateRoute path="/article" component={Article} />
+            <PrivateRoute path="/article/:id" component={Article} />
             <Route path="/members" component={MemberList} />
             <PrivateRoute path="/settings" component={MyPage} />
             <Route component={NotFound} />
