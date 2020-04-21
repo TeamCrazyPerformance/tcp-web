@@ -1,24 +1,14 @@
 import React from "react";
 import Header from "@organisms/Header";
 import SideNavigation from "@molecules/SideNavigation";
-import { default as ArticleView } from "@organisms/Article";
-import { useArticle } from "~/contexts/Article";
-import { useCategory } from "~/contexts/Category";
-import { useAuth } from "~/contexts/Auth";
+import { default as ArticleView, ArticleProps } from "@organisms/Article";
+import { Category } from "~/types";
 import "./style.scss";
 
-const Article = () => {
-    const {
-        state: { article, comments },
-    } = useArticle();
+export type Props = ArticleProps & { categories: Category[] };
 
-    const {
-        state: { categories },
-    } = useCategory();
-
-    const {
-        state: { user },
-    } = useAuth();
+const Article = (props: Props) => {
+    const { article, comments, categories, user } = props;
 
     if (!(article && user)) return null;
 
