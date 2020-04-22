@@ -55,9 +55,11 @@ const Article = () => {
             comments={comments}
             categories={categories}
             user={user}
-            onCommentCreate={handleCreateComment}
-            onCommentDelete={handleDeleteComment}
-            onCommentEdit={handleEditComment}
+
+            onCreateComment={handleCreateComment}
+            onDeleteComment={handleDeleteComment}
+            onEditComment={handleEditComment}
+
         />
     );
 };

@@ -18,15 +18,15 @@ export interface CommentProps {
     /**
      * 댓글 생성 이벤트
      */
-    onCommentCreate?: (comment: { contents: string }) => void;
+    onCreateComment?: (comment: { contents: string }) => void;
     /**
      * 댓글 삭제 이벤트
      */
-    onCommentDelete?: (commentId: number) => void;
+    onDeleteComment?: (commentId: number) => void;
     /**
      * 댓글 수정 이벤트
      */
-    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+    onEditComment?: (comment: { id: number; contents: string }) => void;
 }
 
 //TODO 댓글이 없을 경우 no comments 노출
@@ -34,14 +34,14 @@ const Comment = (props: CommentProps) => {
     const {
         user,
         comments,
-        onCommentCreate,
-        onCommentDelete,
-        onCommentEdit,
+        onCreateComment,
+        onDeleteComment,
+        onEditComment,
     } = props;
 
     return (
         <div className="comment_container">
-            <CommentTextArea handleClick={onCommentCreate} user={user} />
+            <CommentTextArea handleClick={onCreateComment} user={user} />
             <Divider />
             <div className="box_comments">
                 {comments.length &&
@@ -51,8 +51,8 @@ const Comment = (props: CommentProps) => {
                             comment={comment}
                             deletable={comment.author.id === user.id}
                             editable={comment.author.id === user.id}
-                            onDelete={onCommentDelete}
-                            onEdit={onCommentEdit}
+                            onDelete={onDeleteComment}
+                            onEdit={onEditComment}
                         />
                     ))}
             </div>

@@ -9,15 +9,15 @@ export type Props = ArticleProps & { categories: Category[] } & {
     /**
      * 댓글 생성 이벤트
      */
-    onCommentCreate?: (comment: { contents: string }) => void;
+    onCreateComment?: (comment: { contents: string }) => void;
     /**
      * 댓글 삭제 이벤트
      */
-    onCommentDelete?: (id: number) => void;
+    onDeleteComment?: (id: number) => void;
     /**
      * 댓글 수정 이벤트
      */
-    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+    onEditComment?: (comment: { id: number; contents: string }) => void;
 };
 
 const Article = (props: Props) => {
@@ -26,9 +26,9 @@ const Article = (props: Props) => {
         comments,
         categories,
         user,
-        onCommentCreate,
-        onCommentDelete,
-        onCommentEdit,
+        onCreateComment,
+        onDeleteComment,
+        onEditComment,
     } = props;
 
     if (!(article && user)) return null;
@@ -45,9 +45,9 @@ const Article = (props: Props) => {
                         article={article}
                         comments={comments}
                         user={user}
-                        onCommentCreate={onCommentCreate}
-                        onCommentEdit={onCommentEdit}
-                        onCommentDelete={onCommentDelete}
+                        onCreateComment={onCreateComment}
+                        onEditComment={onEditComment}
+                        onDeleteComment={onDeleteComment}
                     />
                 </main>
             </div>

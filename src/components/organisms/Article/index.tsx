@@ -17,15 +17,15 @@ export interface ArticleProps {
     /**
      * 댓글 생성 이벤트
      */
-    onCommentCreate?: (comment: { contents: string }) => void;
+    onCreateComment?: (comment: { contents: string }) => void;
     /**
      * 댓글 삭제 이벤트
      */
-    onCommentDelete?: (commentId: number) => void;
+    onDeleteComment?: (commentId: number) => void;
     /**
      * 댓글 수정 이벤트
      */
-    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+    onEditComment?: (comment: { id: number; contents: string }) => void;
 }
 
 export const ArticleTitle = (props: ArticleTitleProps) => {
@@ -89,9 +89,9 @@ const Article = (props: ArticleProps) => {
         user,
         article,
         comments,
-        onCommentCreate,
-        onCommentDelete,
-        onCommentEdit,
+        onCreateComment,
+        onDeleteComment,
+        onEditComment,
     } = props;
 
     return (
@@ -101,9 +101,10 @@ const Article = (props: ArticleProps) => {
             <CommentContainer
                 comments={comments}
                 user={user}
-                onCommentCreate={onCommentCreate}
-                onCommentDelete={onCommentDelete}
-                onCommentEdit={onCommentEdit}
+                onCreateComment={onCreateComment}
+                onDeleteComment={onDeleteComment}
+                onEditComment={onEditComment}
+
             />
         </div>
     );
