@@ -1,7 +1,7 @@
 import React from "react";
-import TextareaAutosize from "react-textarea-autosize";
 import Avatar from "@atoms/Avatar";
 import Button from "@atoms/Button";
+import TextArea from "@lib/TextArea";
 import { Profile } from "~/types";
 import "./style.scss";
 
@@ -21,7 +21,7 @@ const CommentTextArea = (props: CommentTextAreaProps) => {
         <section className="box_comment_textarea">
             <Avatar src={user.avatar} github={user.github} />
             <div className="box_textarea">
-                <TextareaAutosize
+                <TextArea
                     minRows={2}
                     maxRows={6}
                     placeholder="댓글을 입력해주세요"
