@@ -10,7 +10,7 @@ export type ArticleAction =
     | { type: Action.FETCH_ARTICLIE_ERROR }
     | { type: Action.ADD_COMMENT; payload: { comment: Comment } }
     | { type: Action.MODIFY_COMMENT; payload: { comment: Comment } }
-    | { type: Action.DELETE_COMMENT; commenId: number };
+    | { type: Action.DELETE_COMMENT; commentId: number };
 
 export interface ArticleState {
     article: Article | null;
@@ -47,11 +47,11 @@ export function ArticleListReducer(
             return { ...state, comments: [...state.comments, comment] };
         }
         case Action.DELETE_COMMENT: {
-            const { commenId } = action;
+            const { commentId } = action;
             const { comments } = state;
             return {
                 ...state,
-                comments: comments.filter(({ id }) => id !== commenId),
+                comments: comments.filter(({ id }) => id !== commentId),
             };
         }
         default:

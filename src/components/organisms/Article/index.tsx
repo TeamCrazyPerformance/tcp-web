@@ -11,6 +11,20 @@ export interface ArticleTitleProps {
     article: Omit<IArticle, "comment" | "contents">;
 }
 
+export interface ArticleProps {
+    user: Profile;
+    article: IArticle;
+    comments: Comment[];
+    /**
+     * 댓글 삭제 이벤트
+     */
+    onCommentDelete?: (commentId: number) => void;
+    /**
+     * 댓글 수정 이벤트
+     */
+    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+}
+
 export const ArticleTitle = (props: ArticleTitleProps) => {
     const {
         author,
@@ -50,12 +64,6 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
     );
 };
 
-export interface ArticleProps {
-    user: Profile;
-    article: IArticle;
-    comments: Comment[];
-}
-
 const parse = (line: string, idx: number) => (
     <span key={idx}>
         {line}
@@ -74,13 +82,18 @@ const ArticleContents = ({ contents }: { contents: string }) => {
 };
 
 const Article = (props: ArticleProps) => {
-    const { user, article, comments } = props;
+    const { user, article, comments, onCommentDelete, onCommentEdit } = props;
 
     return (
         <div className="article_page">
             <ArticleTitle article={article} />
             <ArticleContents contents={article.contents} />
-            <CommentContainer comments={comments} user={user} />
+            <CommentContainer
+                comments={comments}
+                user={user}
+                onCommentDelete={onCommentDelete}
+                onCommentEdit={onCommentEdit}
+            />
         </div>
     );
 };

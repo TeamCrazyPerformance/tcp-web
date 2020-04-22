@@ -1,24 +1,30 @@
 import React from "react";
 import Header from "@organisms/Header";
 import SideNavigation from "@molecules/SideNavigation";
-import { default as ArticleView } from "@organisms/Article";
-import { useArticle } from "~/contexts/Article";
-import { useCategory } from "~/contexts/Category";
-import { useAuth } from "~/contexts/Auth";
+import { default as ArticleView, ArticleProps } from "@organisms/Article";
+import { Category } from "~/types";
 import "./style.scss";
 
-const Article = () => {
-    const {
-        state: { article, comments },
-    } = useArticle();
+export type Props = ArticleProps & { categories: Category[] } & {
+    /**
+     * 댓글 삭제 이벤트
+     */
+    onCommentDelete?: (id: number) => void;
+    /**
+     * 댓글 수정 이벤트
+     */
+    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+};
 
+const Article = (props: Props) => {
     const {
-        state: { categories },
-    } = useCategory();
-
-    const {
-        state: { user },
-    } = useAuth();
+        article,
+        comments,
+        categories,
+        user,
+        onCommentDelete,
+        onCommentEdit,
+    } = props;
 
     if (!(article && user)) return null;
 
@@ -34,6 +40,8 @@ const Article = () => {
                         article={article}
                         comments={comments}
                         user={user}
+                        onCommentEdit={onCommentEdit}
+                        onCommentDelete={onCommentDelete}
                     />
                 </main>
             </div>

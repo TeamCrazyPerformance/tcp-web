@@ -15,10 +15,19 @@ export interface CommentProps {
      * Comment 리스트
      */
     comments: IComment[];
+    /**
+     * 댓글 삭제 이벤트
+     */
+    onCommentDelete?: (commentId: number) => void;
+    /**
+     * 댓글 수정 이벤트
+     */
+    onCommentEdit?: (comment: { id: number; contents: string }) => void;
 }
 
+//TODO 댓글이 없을 경우 no comments 노출
 const Comment = (props: CommentProps) => {
-    const { user, comments } = props;
+    const { user, comments, onCommentDelete, onCommentEdit } = props;
 
     return (
         <div className="comment_container">
@@ -26,12 +35,14 @@ const Comment = (props: CommentProps) => {
             <Divider />
             <div className="box_comments">
                 {comments.length &&
-                    comments.map((comment) => (
+                    comments.map(comment => (
                         <CommentCard
                             key={comment.id}
                             comment={comment}
                             deletable={comment.author.id === user.id}
                             editable={comment.author.id === user.id}
+                            onDelete={onCommentDelete}
+                            onEdit={onCommentEdit}
                         />
                     ))}
             </div>
