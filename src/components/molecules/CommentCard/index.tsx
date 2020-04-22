@@ -28,10 +28,10 @@ export interface CommentCardProps {
 }
 
 const CommentCard = (props: CommentCardProps) => {
-    const { comment, editable, deletable, onDelete } = props;
+    const { comment, editable, deletable, onDelete, onEdit } = props;
     const { author, createdAt, updatedAt, contents } = comment;
     const { avatar = "", github = "", username = "" } = author;
-    const editRef = useRef(null);
+    const editRef = useRef<HTMLTextAreaElement>(null);
     const [isEditMode, setIsEditMode] = useState(false);
 
     const dateView = displayDate(updatedAt || createdAt, {
@@ -41,6 +41,13 @@ const CommentCard = (props: CommentCardProps) => {
     const isEditClassName = isEditMode ? "edit_mode" : "";
 
     const handleStartEdit = () => setIsEditMode(true);
+
+    const handleEdit = () => {
+        if (!(onEdit && editRef.current)) return;
+
+        onEdit({ id: comment.id, contents: editRef.current.value });
+        setIsEditMode(false);
+    };
 
     const handleDelete = () => onDelete && onDelete(comment.id);
 
@@ -80,10 +87,10 @@ const CommentCard = (props: CommentCardProps) => {
                             minRows={2}
                             maxRows={6}
                             defaultValue={contents}
-                            ref={editRef}
+                            inputRef={editRef}
                         />
 
-                        <Button name="수정" />
+                        <Button name="수정" onClick={handleEdit} />
                     </section>
                 )}
             </div>

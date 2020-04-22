@@ -32,6 +32,14 @@ const Article = () => {
         );
     };
 
+    const handleCommentModify = (comment: { id: number; contents: string }) => {
+        if (!article) return;
+
+        api.updateComment(article.id, comment).then(payload =>
+            ArticleDispatch({ type: ArticleAction.MODIFY_COMMENT, payload })
+        );
+    };
+
     if (!(article && user)) return null;
     return (
         <View
@@ -40,6 +48,7 @@ const Article = () => {
             categories={categories}
             user={user}
             onCommentDelete={handleCommentDelete}
+            onCommentEdit={handleCommentModify}
         />
     );
 };
