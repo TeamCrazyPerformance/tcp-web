@@ -24,7 +24,7 @@ const Article = () => {
         state: { user },
     } = useAuth();
 
-    const handleCommentDelete = (commentId: number) => {
+    const handleDeleteComment = (commentId: number) => {
         if (!article) return;
 
         api.deleteComment(article.id, commentId).then(() =>
@@ -32,7 +32,7 @@ const Article = () => {
         );
     };
 
-    const handleCommentModify = (comment: { id: number; contents: string }) => {
+    const handleModifyComment = (comment: { id: number; contents: string }) => {
         if (!article) return;
 
         api.updateComment(article.id, comment).then(payload =>
@@ -47,8 +47,8 @@ const Article = () => {
             comments={comments}
             categories={categories}
             user={user}
-            onCommentDelete={handleCommentDelete}
-            onCommentEdit={handleCommentModify}
+            onDeleteComment={handleDeleteComment}
+            onEditComment={handleModifyComment}
         />
     );
 };
