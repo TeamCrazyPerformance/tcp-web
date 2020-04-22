@@ -1,4 +1,5 @@
 import React from "react";
+import StoryRouter from "storybook-react-router";
 import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import ArticleListMock from "@molecules/ArticleList/mock";
@@ -7,7 +8,7 @@ import BulletinBoard from ".";
 export default {
     title: "Organisms / BulletinBoard",
     component: BulletinBoard,
-    decorators: [withKnobs],
+    decorators: [withKnobs, StoryRouter()],
 };
 
 const articles = ArticleListMock.articles;
