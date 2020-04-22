@@ -1,12 +1,13 @@
 import React, { CSSProperties } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
+import StoryRouter from "storybook-react-router";
 import ArticleListMock from "./mock";
 import ArticleList from ".";
 
 export default {
     title: "Molecules / ArticleList",
     component: ArticleList,
-    decorators: [withKnobs],
+    decorators: [withKnobs, StoryRouter()],
 };
 
 const WrapperStyle: CSSProperties = {
