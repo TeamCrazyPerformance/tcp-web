@@ -41,10 +41,22 @@ export function ArticleListReducer(
         case Action.FETCH_ARTICLIE_ERROR: {
             return { ...state, error: true, loading: false };
         }
+        //TODO: 리팩토링 - 댓글 순서
         case Action.ADD_COMMENT:
         case Action.MODIFY_COMMENT: {
-            const { comment } = action.payload;
-            return { ...state, comments: [...state.comments, comment] };
+            const {
+                comment: { id },
+            } = action.payload;
+            const { comments } = state;
+            const comment = comments.find(com => com.id === id);
+            const restComments = comments.filter(com => com.id !== id);
+            return {
+                ...state,
+                comments: [
+                    ...restComments,
+                    { ...comment, ...action.payload.comment },
+                ],
+            };
         }
         case Action.DELETE_COMMENT: {
             const { commentId } = action;

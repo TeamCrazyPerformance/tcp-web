@@ -25,7 +25,9 @@ export function updateComment(
 ) {
     return API.patch<Comment>(`/articles/${articleId}/comments/${comment.id}`, {
         comment,
-    }).then(res => res.data);
+    }).then(({ config: { data } }) => {
+        return JSON.parse(data);
+    });
 }
 
 export function deleteComment(articleId: string | number, commentId: number) {

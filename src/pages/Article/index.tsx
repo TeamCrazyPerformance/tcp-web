@@ -24,11 +24,19 @@ const Article = () => {
         state: { user },
     } = useAuth();
 
-    const handleCommentDelete = (commentId: number) => {
+    const handleDeleteComment = (commentId: number) => {
         if (!article) return;
 
         api.deleteComment(article.id, commentId).then(() =>
             ArticleDispatch({ type: ArticleAction.DELETE_COMMENT, commentId })
+        );
+    };
+
+    const handleModifyComment = (comment: { id: number; contents: string }) => {
+        if (!article) return;
+
+        api.updateComment(article.id, comment).then(payload =>
+            ArticleDispatch({ type: ArticleAction.MODIFY_COMMENT, payload })
         );
     };
 
@@ -39,7 +47,8 @@ const Article = () => {
             comments={comments}
             categories={categories}
             user={user}
-            onCommentDelete={handleCommentDelete}
+            onDeleteComment={handleDeleteComment}
+            onEditComment={handleModifyComment}
         />
     );
 };
