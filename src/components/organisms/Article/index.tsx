@@ -15,6 +15,10 @@ export interface ArticleProps {
     article: IArticle;
     comments: Comment[];
     /**
+     * 댓글 생성 이벤트
+     */
+    onCreateComment?: (comment: { contents: string }) => void;
+    /**
      * 댓글 삭제 이벤트
      */
     onDeleteComment?: (commentId: number) => void;
@@ -81,7 +85,14 @@ const ArticleContents = ({ contents }: { contents: string }) => {
 };
 
 const Article = (props: ArticleProps) => {
-    const { user, article, comments, onDeleteComment, onEditComment } = props;
+    const {
+        user,
+        article,
+        comments,
+        onCreateComment,
+        onDeleteComment,
+        onEditComment,
+    } = props;
 
     return (
         <div className="article_page">
@@ -90,8 +101,10 @@ const Article = (props: ArticleProps) => {
             <CommentContainer
                 comments={comments}
                 user={user}
+                onCreateComment={onCreateComment}
                 onDeleteComment={onDeleteComment}
                 onEditComment={onEditComment}
+
             />
         </div>
     );

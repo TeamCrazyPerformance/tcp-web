@@ -16,6 +16,10 @@ export interface CommentProps {
      */
     comments: IComment[];
     /**
+     * 댓글 생성 이벤트
+     */
+    onCreateComment?: (comment: { contents: string }) => void;
+    /**
      * 댓글 삭제 이벤트
      */
     onDeleteComment?: (commentId: number) => void;
@@ -27,11 +31,17 @@ export interface CommentProps {
 
 //TODO 댓글이 없을 경우 no comments 노출
 const Comment = (props: CommentProps) => {
-    const { user, comments, onDeleteComment, onEditComment } = props;
+    const {
+        user,
+        comments,
+        onCreateComment,
+        onDeleteComment,
+        onEditComment,
+    } = props;
 
     return (
         <div className="comment_container">
-            <CommentTextArea user={user} />
+            <CommentTextArea handleClick={onCreateComment} user={user} />
             <Divider />
             <div className="box_comments">
                 {comments.length &&

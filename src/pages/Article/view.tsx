@@ -7,6 +7,10 @@ import "./style.scss";
 
 export type Props = ArticleProps & { categories: Category[] } & {
     /**
+     * 댓글 생성 이벤트
+     */
+    onCreateComment?: (comment: { contents: string }) => void;
+    /**
      * 댓글 삭제 이벤트
      */
     onDeleteComment?: (id: number) => void;
@@ -22,6 +26,7 @@ const Article = (props: Props) => {
         comments,
         categories,
         user,
+        onCreateComment,
         onDeleteComment,
         onEditComment,
     } = props;
@@ -40,6 +45,7 @@ const Article = (props: Props) => {
                         article={article}
                         comments={comments}
                         user={user}
+                        onCreateComment={onCreateComment}
                         onEditComment={onEditComment}
                         onDeleteComment={onDeleteComment}
                     />

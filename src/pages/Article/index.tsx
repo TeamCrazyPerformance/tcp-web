@@ -17,12 +17,20 @@ const Article = () => {
     } = useArticle();
 
     const {
-        state: { categories },
+        state: { categories, selectedTab: category },
     } = useCategory();
 
     const {
         state: { user },
     } = useAuth();
+
+    const handleCreateComment = (comment: { contents: string }) => {
+        if (!article) return;
+
+        api.createComment(article?.id, { category }, comment).then(payload =>
+            ArticleDispatch({ type: ArticleAction.ADD_COMMENT, payload })
+        );
+    };
 
     const handleDeleteComment = (commentId: number) => {
         if (!article) return;
@@ -32,7 +40,7 @@ const Article = () => {
         );
     };
 
-    const handleModifyComment = (comment: { id: number; contents: string }) => {
+    const handleEditComment = (comment: { id: number; contents: string }) => {
         if (!article) return;
 
         api.updateComment(article.id, comment).then(payload =>
@@ -47,8 +55,11 @@ const Article = () => {
             comments={comments}
             categories={categories}
             user={user}
+
+            onCreateComment={handleCreateComment}
             onDeleteComment={handleDeleteComment}
-            onEditComment={handleModifyComment}
+            onEditComment={handleEditComment}
+
         />
     );
 };
