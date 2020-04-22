@@ -1,8 +1,7 @@
 import React from "react";
 import Avatar from "@atoms/Avatar";
-import { IoMdEye as EyeIcon } from "react-icons/io";
-import { MdModeComment as CommentIcon } from "react-icons/md";
 import CommentContainer from "@molecules/CommentContainer";
+import { EyeIcon, CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { Profile, Article as IArticle, Comment } from "~/types";
 import "./style.scss";
@@ -18,11 +17,11 @@ export interface ArticleProps {
     /**
      * 댓글 삭제 이벤트
      */
-    onCommentDelete?: (commentId: number) => void;
+    onDeleteComment?: (commentId: number) => void;
     /**
      * 댓글 수정 이벤트
      */
-    onCommentEdit?: (comment: { id: number; contents: string }) => void;
+    onEditComment?: (comment: { id: number; contents: string }) => void;
 }
 
 export const ArticleTitle = (props: ArticleTitleProps) => {
@@ -82,7 +81,7 @@ const ArticleContents = ({ contents }: { contents: string }) => {
 };
 
 const Article = (props: ArticleProps) => {
-    const { user, article, comments, onCommentDelete, onCommentEdit } = props;
+    const { user, article, comments, onDeleteComment, onEditComment } = props;
 
     return (
         <div className="article_page">
@@ -91,8 +90,8 @@ const Article = (props: ArticleProps) => {
             <CommentContainer
                 comments={comments}
                 user={user}
-                onCommentDelete={onCommentDelete}
-                onCommentEdit={onCommentEdit}
+                onDeleteComment={onDeleteComment}
+                onEditComment={onEditComment}
             />
         </div>
     );

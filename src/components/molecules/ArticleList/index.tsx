@@ -1,9 +1,9 @@
 import React from "react";
 import StyledLink from "@atoms/StyledLink";
-import "./style.scss";
-import { FaCommentAlt as CommentIcon } from "react-icons/fa";
+import { CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { ArticleInfo } from "~/types";
+import "./style.scss";
 
 const NOTICE_KO = "공지";
 const CLASSNAME_FOR_NOTICE = "notice";

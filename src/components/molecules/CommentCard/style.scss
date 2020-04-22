@@ -1,3 +1,5 @@
+$edit-bg-color: #eff3f7;
+
 .box_comment_card {
     & {
         display: flex;
@@ -14,12 +16,27 @@
 
     & .box_comment {
         margin-left: 1rem;
+        width: 100%;
     }
 
     & .comment_btns {
         position: absolute;
         top: 0;
         right: 0;
+    }
+
+    & .edit_comment textarea {
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+    }
+
+    & .edit_comment {
+        margin: 1rem 1rem 1rem 0;
+        padding: 1.5rem 0.5rem;
+
+        width: auto;
+
+        background-color: white;
     }
 }
 
@@ -65,4 +82,8 @@
         font-size: 1rem;
         font-weight: lighter;
     }
+}
+
+.edit_mode {
+    background-color: $edit-bg-color;
 }

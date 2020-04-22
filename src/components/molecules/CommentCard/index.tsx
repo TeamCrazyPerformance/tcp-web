@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Avatar from "@atoms/Avatar";
-import { FiEdit3 as EditIcon } from "react-icons/fi";
-import { IoMdClose as DeleteIcon } from "react-icons/io";
+import Button from "@atoms/Button";
+import TextArea from "@lib/TextArea";
+import { EditIcon, DeleteIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { Comment } from "~/types";
 import "./style.scss";
@@ -27,18 +28,31 @@ export interface CommentCardProps {
 }
 
 const CommentCard = (props: CommentCardProps) => {
-    const { comment, editable, deletable, onDelete } = props;
+    const { comment, editable, deletable, onDelete, onEdit } = props;
     const { author, createdAt, updatedAt, contents } = comment;
     const { avatar = "", github = "", username = "" } = author;
+    const editRef = useRef<HTMLTextAreaElement>(null);
+    const [isEditMode, setIsEditMode] = useState(false);
 
     const dateView = displayDate(updatedAt || createdAt, {
         format: "YYYY. MM. DD A hh:mm",
     });
 
+    const isEditClassName = isEditMode ? "edit_mode" : "";
+
+    const handleStartEdit = () => setIsEditMode(true);
+
+    const handleEdit = () => {
+        if (!(onEdit && editRef.current)) return;
+
+        onEdit({ id: comment.id, contents: editRef.current.value });
+        setIsEditMode(false);
+    };
+
     const handleDelete = () => onDelete && onDelete(comment.id);
 
     return (
-        <div className="box_comment_card">
+        <div className={`box_comment_card ${isEditClassName}`}>
             <Avatar src={avatar} github={github} />
             <div className="box_comment">
                 <div className="comment_head">
@@ -50,7 +64,12 @@ const CommentCard = (props: CommentCardProps) => {
                         <time>{dateView}</time>
                     </span>
                     <span className="comment_btns">
-                        {editable && <EditIcon className="edit" />}
+                        {editable && (
+                            <EditIcon
+                                className="edit"
+                                onClick={handleStartEdit}
+                            />
+                        )}
                         {deletable && <DeleteIcon onClick={handleDelete} />}
                     </span>
                 </div>
@@ -62,6 +81,18 @@ const CommentCard = (props: CommentCardProps) => {
                         </span>
                     ))}
                 </div>
+                {isEditMode && (
+                    <section className="box_comment_textarea box_textarea edit_comment">
+                        <TextArea
+                            minRows={2}
+                            maxRows={6}
+                            defaultValue={contents}
+                            inputRef={editRef}
+                        />
+
+                        <Button name="수정" onClick={handleEdit} />
+                    </section>
+                )}
             </div>
         </div>
     );
