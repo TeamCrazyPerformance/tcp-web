@@ -1,7 +1,6 @@
 import React from "react";
 import Avatar from "@atoms/Avatar";
-import { FiEdit3 as EditIcon } from "react-icons/fi";
-import { IoMdClose as DeleteIcon } from "react-icons/io";
+import { EditIcon, DeleteIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { Comment } from "~/types";
 import "./style.scss";

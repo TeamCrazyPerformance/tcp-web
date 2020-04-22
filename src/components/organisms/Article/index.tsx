@@ -1,8 +1,7 @@
 import React from "react";
 import Avatar from "@atoms/Avatar";
-import { IoMdEye as EyeIcon } from "react-icons/io";
-import { MdModeComment as CommentIcon } from "react-icons/md";
 import CommentContainer from "@molecules/CommentContainer";
+import { EyeIcon, CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { Profile, Article as IArticle, Comment } from "~/types";
 import "./style.scss";
