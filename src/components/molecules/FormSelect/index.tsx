@@ -24,7 +24,7 @@ interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     /**
      * select가 가질 선택지
      */
-    options: OptionsProps[];
+    options: ({ contents?: string } & OptionsProps)[];
 }
 
 const FormSelect = (props: FormSelectProps) => {
@@ -42,9 +42,9 @@ const FormSelect = (props: FormSelectProps) => {
                 {labelName} {required && <span className="require">*</span>}
             </label>
             <select {...rest} className={invalid ? "invalid" : ""}>
-                {options.map(({ value, ...rest }, idx) => (
-                    <option key={idx} {...rest}>
-                        {value}
+                {options.map(({ value, contents, ...rest }, idx) => (
+                    <option key={idx} {...rest} value={value}>
+                        {contents || value}
                     </option>
                 ))}
             </select>
