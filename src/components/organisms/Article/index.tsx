@@ -1,5 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@atoms/Avatar";
+import Button from "@atoms/Button";
 import CommentContainer from "@molecules/CommentContainer";
 import { EyeIcon, CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
@@ -84,6 +86,19 @@ const ArticleContents = ({ contents }: { contents: string }) => {
     );
 };
 
+const AuthorButtons = (props: { articleId: string | number }) => {
+    const history = useHistory();
+    const handleModify = () => {
+        history.push(`/editor/${props.articleId}`);
+    };
+
+    return (
+        <div className="author_buttons">
+            <Button name="수정하기" onClick={handleModify} />
+        </div>
+    );
+};
+
 const Article = (props: ArticleProps) => {
     const {
         user,
@@ -98,13 +113,15 @@ const Article = (props: ArticleProps) => {
         <div className="article_page">
             <ArticleTitle article={article} />
             <ArticleContents contents={article.contents} />
+            {user.id === article.author.id && (
+                <AuthorButtons articleId={article.id} />
+            )}
             <CommentContainer
                 comments={comments}
                 user={user}
                 onCreateComment={onCreateComment}
                 onDeleteComment={onDeleteComment}
                 onEditComment={onEditComment}
-
             />
         </div>
     );
