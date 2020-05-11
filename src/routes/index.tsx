@@ -5,6 +5,7 @@ import {
     SignUp,
     ArticleList,
     Article,
+    Editor,
     MemberList,
     MyPage,
     NotFound,
@@ -20,6 +21,7 @@ export default () => (
             <Route path="/redirect" component={Redirect} />
             <Route path="/articles" component={ArticleList} />
             <PrivateRoute path="/article/:id" component={Article} />
+            <PrivateRoute path="/editor/:id" component={Editor} />
             <Route path="/members" component={MemberList} />
             <PrivateRoute path="/settings" component={MyPage} />
             <Route component={NotFound} />

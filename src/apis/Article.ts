@@ -38,13 +38,20 @@ export function updateArticle(article: {
     title: string;
     contents: string;
 }) {
-    return API.patch<Article>(`/articles/${article.id}`, { article });
+    return API.patch<Article>(`/articles/${article.id}`, { article }).then(
+        res => res.data
+    );
 }
 
 export function deleteArticle(id: number) {
     return API.delete<null>(`/articles/${id}`);
 }
 
-export function createArticle(article: { title: string; contents: string }) {
-    return API.post<Article>(`/articles`, { article });
+export function createArticle(
+    article: { title: string; contents: string },
+    category: number
+) {
+    return API.post<Article>(`/articles`, { article, category }).then(
+        res => res.data
+    );
 }

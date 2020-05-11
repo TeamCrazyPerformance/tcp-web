@@ -6,9 +6,20 @@ import SignUpForm from ".";
 export default {
     title: "Organisms / SingUpForm",
     decorators: [withKnobs],
-    component: SignUpForm
+    component: SignUpForm,
 };
 
-// export const index = () => {
-//     return <SignUpForm handleSubmit={action("submit")} />;
-// };
+const userInfo = {
+    user: {},
+    validateState: {},
+};
+
+export const index = () => {
+    return (
+        <SignUpForm
+            handleSubmit={action("submit")}
+            userinfo={userInfo}
+            handleBlur={action("validate")}
+        />
+    );
+};
