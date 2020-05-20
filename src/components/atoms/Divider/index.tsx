@@ -1,8 +1,13 @@
-import React from "react";
-import "./style.scss";
+import React from 'react';
+import './style.scss';
 
-export const Divider = () => {
-    return <hr className="divider"></hr>;
+interface Props {
+    className?: string;
+}
+
+export const Divider = (props: Props) => {
+    const { className = '' } = props;
+    return <hr className={`divider ${className}`}></hr>;
 };
 
 export default Divider;
