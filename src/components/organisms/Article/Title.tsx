@@ -1,33 +1,43 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Avatar from '@atoms/Avatar';
-import Button from '@atoms/Button';
-import Divider from '@atoms/Divider';
-import { EyeIcon, CommentIcon } from '@lib/Icons';
-import { displayDate } from '~/utils';
-import { Profile, Article as IArticle } from '~/types';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import Avatar from "@atoms/Avatar";
+import Button from "@atoms/Button";
+import Divider from "@atoms/Divider";
+import { EyeIcon, CommentIcon } from "@lib/Icons";
+import { displayDate } from "~/utils";
+import { Profile, Article as IArticle } from "~/types";
 
 export interface ArticleTitleProps {
-    article: Omit<IArticle, 'comment' | 'contents'>;
+    article: Omit<IArticle, "comment" | "contents">;
     user: Profile;
+    onDeleteArticle: (id: number | string) => void;
 }
 
-const AuthorButtons = (props: { articleId: string | number }) => {
+interface AuthorButtonProps {
+    articleId: string | number;
+    onDeleteArticle: (id: number | string) => void;
+}
+
+const AuthorButtons = (props: AuthorButtonProps) => {
+    const { articleId, onDeleteArticle } = props;
     const history = useHistory();
     const handleModify = () => {
-        history.push(`/editor/${props.articleId}`);
+        history.push(`/editor/${articleId}`);
+    };
+    const handleDelete = () => {
+        onDeleteArticle(articleId);
     };
 
     return (
         <div className="gnb">
-            <Button name={'수정'} className="white" onClick={handleModify} />
-            <Button name={'삭제'} className="red" />
+            <Button name={"수정"} className="white" onClick={handleModify} />
+            <Button name={"삭제"} className="red" onClick={handleDelete} />
         </div>
     );
 };
 
 export const ArticleTitle = (props: ArticleTitleProps) => {
-    const { article, user } = props;
+    const { article, user, onDeleteArticle } = props;
     const {
         author,
         createdAt,
@@ -38,17 +48,20 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
     } = article;
 
     const dateView = displayDate(updatedAt || createdAt, {
-        format: 'YYYY/MM/DD A hh:mm',
+        format: "YYYY/MM/DD A hh:mm",
     });
 
-    const { avatar = '', github = '', username = '' } = author;
+    const { avatar = "", github = "", username = "" } = author;
 
     return (
         <div>
             <div className="upper_btns">
-                <Button name={'목록'} className="white" />
+                <Button name={"목록"} className="white" />
                 {user.id === author.id && (
-                    <AuthorButtons articleId={article.id} />
+                    <AuthorButtons
+                        articleId={article.id}
+                        onDeleteArticle={onDeleteArticle}
+                    />
                 )}
             </div>
             <Divider className="article_upper_divider" />

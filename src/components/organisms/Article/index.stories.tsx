@@ -1,29 +1,30 @@
-import React from 'react';
-import StoryRouter from 'storybook-react-router';
-import { withKnobs } from '@storybook/addon-knobs';
-import Article, { ArticleProps } from '.';
-import Title, { ArticleTitleProps } from './Title';
+import React from "react";
+import StoryRouter from "storybook-react-router";
+import { withKnobs } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
+import Article, { ArticleProps } from ".";
+import Title, { ArticleTitleProps } from "./Title";
 
 export default {
-    title: 'Organisms / Article',
+    title: "Organisms / Article",
     component: Article,
     decorators: [withKnobs, StoryRouter()],
 };
 
 const USER = {
     1: {
-        id: '1',
+        id: "1",
         avatar:
-            'https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4',
-        github: 'lallaheeee',
-        username: '김희라',
+            "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
+        github: "lallaheeee",
+        username: "김희라",
     },
     2: {
-        id: '2',
+        id: "2",
         avatar:
-            'https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4',
-        github: 'kangJiJi',
-        username: '강지훈',
+            "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
+        github: "kangJiJi",
+        username: "강지훈",
     },
 };
 
@@ -32,10 +33,10 @@ export const index = () => {
         article: {
             id: 1,
             author: USER[1],
-            createdAt: new Date('2020-03-04 02:03'),
-            title: '이것은 제목임 ',
+            createdAt: new Date("2020-03-04 02:03"),
+            title: "이것은 제목임 ",
             contents:
-                '이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. \n\n\n\n이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. ',
+                "이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. \n\n\n\n이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. 이것은 내용입니다. ",
             commentCount: 25,
             viewCount: 25,
         },
@@ -50,17 +51,18 @@ export const index = () => {
             {
                 id: 2,
                 author: USER[2],
-                createdAt: new Date('2020-03-07 02:45'),
-                contents: '김희라 짱짜자자짱짱 ',
+                createdAt: new Date("2020-03-07 02:45"),
+                contents: "김희라 짱짜자자짱짱 ",
             },
             {
                 id: 3,
                 author: USER[1],
-                createdAt: new Date('2020-03-04 02:03'),
+                createdAt: new Date("2020-03-04 02:03"),
                 contents:
-                    '내가 작성한 거니까 삭ㅈㅔ 및 수정 가능 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',
+                    "내가 작성한 거니까 삭ㅈㅔ 및 수정 가능 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
             },
         ],
+        onDeleteArticle: action("delete"),
     };
 
     return <Article {...props} />;
@@ -71,12 +73,13 @@ export const Title_author = () => {
         article: {
             id: 1,
             author: USER[1],
-            createdAt: new Date('2020-03-04 02:03'),
-            title: '이것은 제목임 ',
+            createdAt: new Date("2020-03-04 02:03"),
+            title: "이것은 제목임 ",
             commentCount: 25,
             viewCount: 25,
         },
         user: USER[1],
+        onDeleteArticle: action("delete"),
     };
 
     return <Title {...props} />;
@@ -87,12 +90,13 @@ export const Title_default = () => {
         article: {
             id: 1,
             author: USER[2],
-            createdAt: new Date('2020-03-04 02:03'),
-            title: '이것은 제목임 ',
+            createdAt: new Date("2020-03-04 02:03"),
+            title: "이것은 제목임 ",
             commentCount: 25,
             viewCount: 25,
         },
         user: USER[1],
+        onDeleteArticle: action("delete"),
     };
 
     return <Title {...props} />;
