@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Avatar from "@atoms/Avatar";
 import Button from "@atoms/Button";
 import CommentContainer from "@molecules/CommentContainer";
+import ReactHtmlParser from "@lib/ReactHtmlParser";
 import { EyeIcon, CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
 import { Profile, Article as IArticle, Comment } from "~/types";
@@ -69,19 +70,11 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
     );
 };
 
-const parse = (line: string, idx: number) => (
-    <span key={idx}>
-        {line}
-        <br />
-    </span>
-);
-
 const ArticleContents = ({ contents }: { contents: string }) => {
-    const contentsSplitedByNewline = contents.split("\n");
 
     return (
         <div className="article_content">
-            {contentsSplitedByNewline.map(parse)}
+            {ReactHtmlParser(contents)}
         </div>
     );
 };
