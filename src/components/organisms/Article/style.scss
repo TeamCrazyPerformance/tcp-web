@@ -1,3 +1,29 @@
+.upper_btns {
+    & {
+        display: flex;
+    }
+
+    & > * {
+        flex: none;
+    }
+
+    & .gnb {
+        margin-left: auto;
+    }
+
+    & .gnb > button {
+        margin-left: 0.4rem;
+    }
+}
+
+.article_upper_divider {
+    margin: 1rem 0 1.5rem 0;
+}
+
+.article_divider {
+    margin: 1rem 0;
+}
+
 .box_post_title {
     & {
         display: flex;
@@ -44,7 +70,13 @@
     }
 }
 
-.article_content {
-    padding: 8rem 4rem;
-    font-size: 1.2rem;
+.article_page {
+    & {
+        width: 100%;
+    }
+
+    & .article_content {
+        padding: 5rem 0;
+        font-size: 1.2rem;
+    }
 }

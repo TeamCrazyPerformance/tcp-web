@@ -1,19 +1,28 @@
-@import "~/theme.scss";
+@import '~/theme.scss';
+
+$border-color: #e4e4e4;
+$red-color: #ff6060;
 
 .btn {
     height: 2.5rem;
     width: 8rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
+    border-radius: 0.1rem;
+    font-size: 1rem;
 }
 
 .white {
     color: $base-color;
     background-color: $base-white-color;
-    border: 1px solid $base-color;
+    border: 1px solid $border-color;
 }
 
 .grey {
     color: $base-white-color;
     background-color: $base-color;
+}
+
+.red {
+    color: $red-color;
+    background-color: $base-white-color;
+    border: 1px solid $border-color;
 }
