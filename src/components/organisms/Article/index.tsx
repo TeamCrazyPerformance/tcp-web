@@ -1,17 +1,9 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import Avatar from "@atoms/Avatar";
-import Button from "@atoms/Button";
-import CommentContainer from "@molecules/CommentContainer";
-import ReactHtmlParser from "@lib/ReactHtmlParser";
-import { EyeIcon, CommentIcon } from "@lib/Icons";
-import { displayDate } from "~/utils";
-import { Profile, Article as IArticle, Comment } from "~/types";
-import "./style.scss";
-
-export interface ArticleTitleProps {
-    article: Omit<IArticle, "comment" | "contents">;
-}
+import React from 'react';
+import CommentContainer from '@molecules/CommentContainer';
+import ReactHtmlParser from '@lib/ReactHtmlParser';
+import { Profile, Article as IArticle, Comment } from '~/types';
+import Title from './Title';
+import './style.scss';
 
 export interface ArticleProps {
     user: Profile;
@@ -31,65 +23,8 @@ export interface ArticleProps {
     onEditComment?: (comment: { id: number; contents: string }) => void;
 }
 
-export const ArticleTitle = (props: ArticleTitleProps) => {
-    const {
-        author,
-        createdAt,
-        updatedAt,
-        title,
-        commentCount,
-        viewCount,
-    } = props.article;
-    const dateView = displayDate(updatedAt || createdAt, {
-        format: "YYYY/MM./DD A hh:mm",
-    });
-
-    const { avatar = "", github = "", username = "" } = author;
-
-    return (
-        <div className="box_post_title">
-            <div className="title_info">
-                <h1>{title}</h1>
-                <div>
-                    <time>{dateView}</time>
-                    <strong>{username}</strong>
-                </div>
-            </div>
-            <span className="title_right_side">
-                <span className="title_icons">
-                    <span className="title_icon">
-                        <CommentIcon /> {commentCount}
-                    </span>
-                    <span className="title_icon">
-                        <EyeIcon /> {viewCount}
-                    </span>
-                </span>
-                <Avatar src={avatar} github={github} />
-            </span>
-        </div>
-    );
-};
-
 const ArticleContents = ({ contents }: { contents: string }) => {
-
-    return (
-        <div className="article_content">
-            {ReactHtmlParser(contents)}
-        </div>
-    );
-};
-
-const AuthorButtons = (props: { articleId: string | number }) => {
-    const history = useHistory();
-    const handleModify = () => {
-        history.push(`/editor/${props.articleId}`);
-    };
-
-    return (
-        <div className="author_buttons">
-            <Button name="수정하기" onClick={handleModify} />
-        </div>
-    );
+    return <div className="article_content">{ReactHtmlParser(contents)}</div>;
 };
 
 const Article = (props: ArticleProps) => {
@@ -104,11 +39,8 @@ const Article = (props: ArticleProps) => {
 
     return (
         <div className="article_page">
-            <ArticleTitle article={article} />
+            <Title article={article} user={user} />
             <ArticleContents contents={article.contents} />
-            {user.id === article.author.id && (
-                <AuthorButtons articleId={article.id} />
-            )}
             <CommentContainer
                 comments={comments}
                 user={user}
