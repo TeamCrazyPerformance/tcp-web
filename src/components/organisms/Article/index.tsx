@@ -1,9 +1,9 @@
-import React from 'react';
-import CommentContainer from '@molecules/CommentContainer';
-import ReactHtmlParser from '@lib/ReactHtmlParser';
-import { Profile, Article as IArticle, Comment } from '~/types';
-import Title from './Title';
-import './style.scss';
+import React from "react";
+import CommentContainer from "@molecules/CommentContainer";
+import ReactHtmlParser from "@lib/ReactHtmlParser";
+import { Profile, Article as IArticle, Comment } from "~/types";
+import Title from "./Title";
+import "./style.scss";
 
 export interface ArticleProps {
     user: Profile;
@@ -21,6 +21,10 @@ export interface ArticleProps {
      * 댓글 수정 이벤트
      */
     onEditComment?: (comment: { id: number; contents: string }) => void;
+    /**
+     * 게시글 삭제 이벤트
+     */
+    onDeleteArticle: (id: number | string) => void;
 }
 
 const ArticleContents = ({ contents }: { contents: string }) => {
@@ -35,11 +39,16 @@ const Article = (props: ArticleProps) => {
         onCreateComment,
         onDeleteComment,
         onEditComment,
+        onDeleteArticle,
     } = props;
 
     return (
         <div className="article_page">
-            <Title article={article} user={user} />
+            <Title
+                article={article}
+                user={user}
+                onDeleteArticle={onDeleteArticle}
+            />
             <ArticleContents contents={article.contents} />
             <CommentContainer
                 comments={comments}

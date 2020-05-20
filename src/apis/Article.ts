@@ -25,7 +25,7 @@ export function getArticles(page: number, category?: number) {
     const query = categoryQuery(category);
 
     return API.get<ArticleList>(
-        `/articles?${query && `${query}&`}${limit(10, page)}`
+        `/articles?${query && `${query}&`}${limit(10, page)}`,
     ).then(({ data }) => data);
 }
 
@@ -39,19 +39,19 @@ export function updateArticle(article: {
     contents: string;
 }) {
     return API.patch<Article>(`/articles/${article.id}`, { article }).then(
-        res => res.data
+        res => res.data,
     );
 }
 
-export function deleteArticle(id: number) {
+export function deleteArticle(id: number | string) {
     return API.delete<null>(`/articles/${id}`);
 }
 
 export function createArticle(
     article: { title: string; contents: string },
-    category: number
+    category: number,
 ) {
     return API.post<Article>(`/articles`, { article, category }).then(
-        res => res.data
+        res => res.data,
     );
 }
