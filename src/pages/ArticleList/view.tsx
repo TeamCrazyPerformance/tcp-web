@@ -7,6 +7,7 @@ import {
     Action as ArticleListAction,
 } from "~/contexts/ArticleList";
 import { useCategory } from "~/contexts/Category";
+import { useAuth } from "~/contexts/Auth";
 import "./style.scss";
 
 const ArticleList = () => {
@@ -18,6 +19,10 @@ const ArticleList = () => {
         state: { categories },
     } = useCategory();
 
+    const {
+        state: { user },
+    } = useAuth();
+
     return (
         <>
             <Header />
@@ -27,6 +32,7 @@ const ArticleList = () => {
                 </nav>
                 <main>
                     <BulletinBoard
+                        user={user}
                         articles={articles}
                         articlesCount={articlesCount}
                         onPageChange={({ selected: page }) => {
