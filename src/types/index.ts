@@ -28,7 +28,7 @@ export interface Category {
 
 export interface Article {
     id: number | string;
-    isNotice?: boolean;
+    isNotice?: "전체" | "게시판" | undefined;
 
     author: Profile;
     title: string;
@@ -43,6 +43,11 @@ export interface Article {
 
 export type ArticleInfo = Omit<Article, "contents" | "author"> & {
     author: string;
+};
+
+export type NoticeInfo = {
+    type: "전체" | "게시판";
+    article: ArticleInfo;
 };
 
 export interface Comment {

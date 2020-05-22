@@ -1,4 +1,5 @@
 $table-line-color: #b7b7b9;
+$hover-bg-color: #f3f3f3;
 
 .comment_count_wrapper {
     & {
@@ -48,5 +49,14 @@ article {
     &.notice,
     &.notice h3 {
         font-weight: bold;
+    }
+
+    & span.notice_board {
+        margin-right: 1rem;
+        color: $table-line-color;
+    }
+
+    &:hover {
+        background-color: $hover-bg-color;
     }
 }

@@ -2,10 +2,11 @@ import React from "react";
 import StyledLink from "@atoms/StyledLink";
 import { CommentIcon } from "@lib/Icons";
 import { displayDate } from "~/utils";
-import { ArticleInfo } from "~/types";
+import { ArticleInfo, NoticeInfo } from "~/types";
 import "./style.scss";
 
 const NOTICE_KO = "공지";
+
 const CLASSNAME_FOR_NOTICE = "notice";
 const MAX_DISPLAY_NUM = 999;
 
@@ -18,6 +19,7 @@ export interface ArticleListProps {
      * 포스트들
      */
     articles?: ArticleInfo[];
+    notices?: NoticeInfo[];
 }
 
 const Columns = (props: ArticleInfo) => {
@@ -39,7 +41,12 @@ const Columns = (props: ArticleInfo) => {
     return (
         <article className={className}>
             <span>{isNotice ? NOTICE_KO : id}</span>
-            <h3>{title}</h3>
+            <h3>
+                {isNotice === "게시판" && (
+                    <span className="notice_board">게시판</span>
+                )}
+                {title}
+            </h3>
             <span className="comment_count_wrapper">
                 <CommentIcon /> {countView}
             </span>
@@ -51,7 +58,7 @@ const Columns = (props: ArticleInfo) => {
 };
 
 const BulletinBoard = (props: ArticleListProps) => {
-    const { columns, articles = [] } = props;
+    const { columns, articles = [], notices = [] } = props;
 
     return (
         <section>
@@ -60,6 +67,11 @@ const BulletinBoard = (props: ArticleListProps) => {
                     <span key={col}> {col} </span>
                 ))}
             </div>
+            {notices.map(({ article: notice, type }: NoticeInfo) => (
+                <StyledLink to={`/article/${notice.id}`} key={notice.id}>
+                    <Columns {...notice} isNotice={type} />
+                </StyledLink>
+            ))}
             {articles.map((article: ArticleInfo) => (
                 <StyledLink to={`/article/${article.id}`} key={article.id}>
                     <Columns {...article} />

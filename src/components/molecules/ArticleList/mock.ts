@@ -4,7 +4,7 @@ const bulletinBoardMock: ArticleListProps = {
     articles: [
         {
             id: 37,
-            isNotice: true,
+            isNotice: "전체",
             title: "[회의록] 2020 동아리 홍보",
             commentCount: 12,
             createdAt: new Date("2020-03-02"),
