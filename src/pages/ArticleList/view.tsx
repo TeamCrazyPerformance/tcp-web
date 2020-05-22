@@ -12,7 +12,7 @@ import "./style.scss";
 
 const ArticleList = () => {
     const {
-        state: { articles, articlesCount },
+        state: { notices, articles, articlesCount },
         dispatch: articleListDispatch,
     } = useArticleList();
     const {
@@ -34,6 +34,7 @@ const ArticleList = () => {
                     <BulletinBoard
                         user={user}
                         articles={articles}
+                        notices={notices}
                         articlesCount={articlesCount}
                         onPageChange={({ selected: page }) => {
                             articleListDispatch({

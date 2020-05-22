@@ -14,7 +14,7 @@ type BulletinBoardProps = ArticleListProps &
 const ARTICES_PER_PAGE = 10;
 
 const BulletinBoard = (props: BulletinBoardProps) => {
-    const { user, articles, articlesCount, onPageChange } = props;
+    const { user, articles, notices, articlesCount, onPageChange } = props;
     const history = useHistory();
 
     const pageCount = useMemo(
@@ -28,7 +28,7 @@ const BulletinBoard = (props: BulletinBoardProps) => {
 
     return (
         <div className="article_list">
-            <ArticleList articles={articles} />
+            <ArticleList articles={articles} notices={notices} />
             {user && (
                 <Button
                     name="작성"

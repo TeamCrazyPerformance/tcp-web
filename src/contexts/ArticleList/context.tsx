@@ -22,7 +22,7 @@ const ArticleListContext = createContext<ArticleListContextProps>({
 export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
     const [state, ArticleListDispatch] = useReducer(
         ArticleListReducer,
-        initialState
+        initialState,
     );
     const {
         state: { selectedTab },
@@ -38,12 +38,12 @@ export function ArticleListProvider(props: React.PropsWithChildren<{}>) {
                 ArticleListDispatch({
                     type: Action.FETCH_ARTICLIES_SUCCESS,
                     payload,
-                })
+                }),
             )
             .catch(() =>
                 ArticleListDispatch({
                     type: Action.FETCH_ARTICLIES_ERROR,
-                })
+                }),
             );
     };
 

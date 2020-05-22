@@ -1,7 +1,8 @@
 import API from "./utils";
-import { Article as IArticle, ArticleInfo, Comment } from "~/types";
+import { Article as IArticle, ArticleInfo, NoticeInfo, Comment } from "~/types";
 
 type ArticleList = {
+    notices: NoticeInfo[];
     articles: ArticleInfo[];
     articlesCount: number;
 };
