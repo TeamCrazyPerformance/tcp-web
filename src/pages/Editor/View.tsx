@@ -11,7 +11,9 @@ const EditorView = (props: EditorProps) => {
     return (
         <>
             <Header />
-            <EditorComponent categories={categories} {...props} />
+            <main>
+                <EditorComponent categories={categories} {...props} />
+            </main>
         </>
     );
 };
