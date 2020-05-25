@@ -14,6 +14,7 @@ export const index = () => {
             avatar:
                 "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
             github: "lallaheeee",
+            isAdmin: true,
             username: "김희라",
             id: "0",
         },
@@ -22,6 +23,7 @@ export const index = () => {
                 id: 1,
                 author: {
                     id: "0",
+                    isAdmin: true,
                     avatar:
                         "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
                     github: "lallaheeee",
@@ -34,6 +36,7 @@ export const index = () => {
                 id: 2,
                 author: {
                     id: "1",
+                    isAdmin: true,
                     avatar:
                         "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
                     github: "kangJiJi",
@@ -46,6 +49,7 @@ export const index = () => {
                 id: 3,
                 author: {
                     id: "0",
+                    isAdmin: true,
                     avatar:
                         "https://avatars1.githubusercontent.com/u/22452742?s=40&u=e6bf6f13b8cfd32c5ed31d15bc2f9e6ee6463d1c&v=4",
                     github: "lallaheeee",

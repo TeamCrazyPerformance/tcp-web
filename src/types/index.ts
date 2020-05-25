@@ -15,6 +15,7 @@ export interface User {
 export interface Profile {
     id: string;
     github: string;
+    isAdmin: boolean;
     username: string;
     avatar: string;
 }
