@@ -4,7 +4,7 @@ import { useQuery } from "~/hooks";
 import { handleUserResponse } from "~/apis/Auth";
 import { useAuth, Action } from "~/contexts/Auth";
 
-const getStringValue = (args: string[] | string | null | undefined): string =>
+const getStringValue = (args: string[] | string | null | undefined ): string =>
     Array.isArray(args) ? args[0] : args ? args : "";
 
 const Redirect = () => {
@@ -13,13 +13,14 @@ const Redirect = () => {
     const history = useHistory();
 
     const setUser = () => {
-        let { id, username, github, avatar, token } = query;
+        let { id,isAdmin: adminValue, username, github, avatar, token } = query;
         if (!token) {
             history.replace("/");
             return;
         }
+        let isAdmin = adminValue === 'true' ? true : false;
 
-        [id, username, github, avatar, token] = [
+        [id,  username, github, avatar, token] = [
             id,
             username,
             github,
@@ -29,6 +30,7 @@ const Redirect = () => {
 
         const user = {
             id,
+            isAdmin,
             username,
             github,
             avatar,

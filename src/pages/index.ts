@@ -4,6 +4,7 @@ export { default as ArticleList } from "./ArticleList";
 export { default as Article } from "./Article";
 export { default as Editor } from "./Editor";
 export { default as MemberList } from "./MemberList";
+export { default as Admin } from "./Admin";
 export { default as MyPage } from "./MyPage";
 export { default as NotFound } from "./NotFound";
 export { default as Redirect } from "./Redirect";
