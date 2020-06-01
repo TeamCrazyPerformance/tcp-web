@@ -9,7 +9,7 @@ import "./style.scss";
 import { login } from "~/apis/Auth";
 import { useAuth, Action } from "~/contexts/Auth";
 
-const Nav = () => (
+const Nav = ({ isAdmin }: { isAdmin: boolean | undefined }) => (
     <nav>
         <ul>
             <li>
@@ -21,6 +21,11 @@ const Nav = () => (
             <li>
                 <StyledLink to="/members" name="팀원 소개" />
             </li>
+            {isAdmin && (
+                <li>
+                    <StyledLink to="/admin" name="관리" />
+                </li>
+            )}
         </ul>
     </nav>
 );
@@ -60,7 +65,7 @@ const Header = () => {
                 <img src={logo} alt={logo} />
                 <div> tcp </div>
             </div>
-            <Nav />
+            <Nav isAdmin={user?.isAdmin} />
             <div className="login_status_wrapper">
                 {user ? (
                     <>
