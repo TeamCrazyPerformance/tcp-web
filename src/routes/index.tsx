@@ -11,7 +11,7 @@ import {
     MyPage,
     NotFound,
     Redirect,
-} from "~/pages";
+} from "~/components/pages";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 
