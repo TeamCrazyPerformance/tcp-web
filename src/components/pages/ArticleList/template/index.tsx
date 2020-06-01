@@ -5,7 +5,7 @@ import ArticleList, {
 } from "~/components/UI/blocks/ArticleList";
 import Pagination, { PaginationProps } from "~/components/UI/atoms/Pagination";
 import Button from "~/components/UI/atoms/Button";
-import BaseTemplate from "~/components/template/Base";
+import BaseTemplate from "~/components/pages/template";
 import { Category, Profile } from "~/types";
 import "./style.scss";
 

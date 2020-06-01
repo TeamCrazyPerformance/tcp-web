@@ -1,5 +1,5 @@
 import React from "react";
-import ArticleListView from "~/components/template/ArticleList";
+import ArticleListView from "~/components/pages/ArticleList/template";
 import { CategoryProvider, useCategory } from "~/contexts/Category";
 import { useAuth } from "~/contexts/Auth";
 import {

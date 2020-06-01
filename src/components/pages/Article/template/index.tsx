@@ -1,6 +1,6 @@
 import React from "react";
 import Article, { ArticleProps } from "~/components/UI/blocks/Article";
-import BaseTemplate from "~/components/template/Base";
+import BaseTemplate from "~/components/pages/template";
 import { Category } from "~/types";
 
 export type Props = ArticleProps & { categories: Category[] };

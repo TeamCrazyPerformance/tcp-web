@@ -9,7 +9,7 @@ import { useCategory, CategoryProvider } from "~/contexts/Category";
 import { useAuth } from "~/contexts/Auth";
 import * as api from "~/apis/Comment";
 import * as articleApi from "~/apis/Article";
-import ArticleTemplate from "~/components/template/Article";
+import ArticleTemplate from "~/components/pages/Article/template";
 
 //TODO : api 에러시 토스트/모달 띄우기
 const View = () => {
