@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, RouteProps } from "react-router-dom";
-import { Home } from "~/pages";
+import { Home } from "~/components/pages";
 import { useAuth } from "~/contexts/Auth";
 
 const PrivateRoute = (props: RouteProps) => {
