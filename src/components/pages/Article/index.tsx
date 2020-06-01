@@ -9,10 +9,10 @@ import { useCategory, CategoryProvider } from "~/contexts/Category";
 import { useAuth } from "~/contexts/Auth";
 import * as api from "~/apis/Comment";
 import * as articleApi from "~/apis/Article";
-import View from "./view";
+import ArticleTemplate from "~/components/template/Article";
 
 //TODO : api 에러시 토스트/모달 띄우기
-const Article = () => {
+const View = () => {
     const history = useHistory();
 
     const {
@@ -60,7 +60,7 @@ const Article = () => {
 
     if (!(article && user)) return null;
     return (
-        <View
+        <ArticleTemplate
             article={article}
             comments={comments}
             categories={categories}
@@ -76,7 +76,7 @@ const Article = () => {
 export default () => (
     <CategoryProvider>
         <ArticleProvider>
-            <Article />
+            <View />
         </ArticleProvider>
     </CategoryProvider>
 );
