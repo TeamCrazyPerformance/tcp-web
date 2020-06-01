@@ -1,7 +1,7 @@
 import React from "react";
 import Divider from "@atoms/Divider";
-import CommentTextArea from "@molecules/CommentTextArea";
-import CommentCard from "@molecules/CommentCard";
+import CommentTextArea from "~/components/atoms/Comment/CommentTextArea";
+import CommentCard from "~/components/atoms/Comment/CommentCard";
 import { Profile, Comment as IComment } from "~/types";
 
 import "./style.scss";

@@ -38,4 +38,11 @@
         font-size: 0.8rem;
         height: 2rem;
     }
+
+    select {
+        -webkit-appearance: inherit;
+        background: url("./downarrow.png") no-repeat 95% 50%;
+        background-size: 1rem;
+        border-radius: 0;
+    }
 }

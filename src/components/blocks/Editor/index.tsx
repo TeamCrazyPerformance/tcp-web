@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import Button from "@atoms/Button";
-import Select from "@molecules/FormSelect";
-import Input from "@molecules/FormInput";
-import ReactEditor from "@molecules/Editor";
+import Select from "~/components/atoms/Form/FormSelect";
+import Input from "~/components/atoms/Form/FormInput";
+import ReactEditor from "~/components/atoms/Editor";
 import { Category } from "~/types";
 
 const TITLE = "title";

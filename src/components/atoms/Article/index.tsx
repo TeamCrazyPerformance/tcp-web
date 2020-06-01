@@ -1,5 +1,5 @@
 import React from "react";
-import CommentContainer from "@molecules/CommentContainer";
+import CommentContainer from "~/components/blocks/CommentContainer";
 import ReactHtmlParser from "@lib/ReactHtmlParser";
 import { Profile, Article as IArticle, Comment } from "~/types";
 import Title from "./Title";

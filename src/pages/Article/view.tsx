@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "~/components/blocks/Header";
-import SideNavigation from "@molecules/SideNavigation";
+import SideNavigation from "~/components/atoms/SideNavigation";
 import {
     default as ArticleView,
     ArticleProps,
-} from "~/components/blocks/Article";
+} from "~/components/atoms/Article";
 import { Category } from "~/types";
 import "./style.scss";
 

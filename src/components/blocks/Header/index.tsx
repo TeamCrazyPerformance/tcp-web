@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "@atoms/Button";
 import StyledLink from "@atoms/StyledLink";
-import Dropdown, { DropdownItem } from "@molecules/Dropdown";
+import Dropdown, { DropdownItem } from "~/components/atoms/Dropdown";
 import logo from "./logo.jpg";
 import "./style.scss";
 

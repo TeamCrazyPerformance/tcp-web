@@ -2,7 +2,7 @@ import React from "react";
 import StoryRouter from "storybook-react-router";
 import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-import ArticleListMock from "@molecules/ArticleList/mock";
+import ArticleListMock from "~/components/blocks/ArticleList/mock";
 import BulletinBoard from ".";
 
 export default {

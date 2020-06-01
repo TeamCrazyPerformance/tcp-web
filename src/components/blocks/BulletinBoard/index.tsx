@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
-import ArticleList, { ArticleListProps } from "@molecules/ArticleList";
-import Pagination, { PaginationProps } from "@molecules/Pagination";
+import ArticleList, { ArticleListProps } from "~/components/blocks/ArticleList";
+import Pagination, { PaginationProps } from "~/components/atoms/Pagination";
 import Button from "@atoms/Button";
 import { Profile } from "~/types";
 import "./style.scss";

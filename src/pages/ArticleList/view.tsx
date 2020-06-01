@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@blocks/Header";
-import SideNavigation from "@molecules/SideNavigation";
+import SideNavigation from "~/components/atoms/SideNavigation";
 import BulletinBoard from "@blocks/BulletinBoard";
 import {
     useArticleList,

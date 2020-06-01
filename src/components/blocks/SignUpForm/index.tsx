@@ -1,7 +1,7 @@
 import React, { FormHTMLAttributes } from "react";
 import Button from "@atoms/Button";
-import FormInput from "@molecules/FormInput";
-import FormSelect from "@molecules/FormSelect";
+import FormInput from "~/components/atoms/Form/FormInput";
+import FormSelect from "~/components/atoms/Form/FormSelect";
 import "./style.scss";
 
 interface SignUpFormProps extends FormHTMLAttributes<HTMLFormElement> {

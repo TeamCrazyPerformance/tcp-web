@@ -1,7 +1,7 @@
 import React, { useMemo, useState, SyntheticEvent } from "react";
 import SideNavigationItem, {
     SideNavigationItemProps,
-} from "@atoms/SideNavigationItem";
+} from "~/components/atoms/SideNavigation/SideNavigationItem";
 import "./style.scss";
 
 interface SideNavigationProps {

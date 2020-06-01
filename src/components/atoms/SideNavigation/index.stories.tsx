@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import StoryRouter from "storybook-react-router";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import { SideNavigationItemProps } from "@atoms/SideNavigationItem";
+import { SideNavigationItemProps } from "~/components/atoms/SideNavigation/SideNavigationItem";
 import SideNavigation from ".";
 
 export default {
