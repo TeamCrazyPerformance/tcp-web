@@ -1,5 +1,5 @@
 import React from "react";
-import BaseTemplate from "~/components/pages/template";
+import BaseTemplate from "~/components/pages/templates/Base";
 import { Category } from "~/types";
 import EditorComponent, { EditorProps } from "~/components/UI/blocks/Editor";
 
