@@ -7,11 +7,13 @@ import {
     Article,
     Editor,
     MemberList,
+    Admin,
     MyPage,
     NotFound,
     Redirect,
 } from "~/pages";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export default () => (
     <Router>
@@ -23,6 +25,7 @@ export default () => (
             <PrivateRoute path="/article/:id" component={Article} />
             <PrivateRoute path="/editor/:id" component={Editor} />
             <Route path="/members" component={MemberList} />
+            <AdminRoute path="/admin" component={Admin}/>
             <PrivateRoute path="/settings" component={MyPage} />
             <Route component={NotFound} />
         </Switch>

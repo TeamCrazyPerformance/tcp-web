@@ -3,12 +3,12 @@ import { Route, RouteProps } from "react-router-dom";
 import { Home } from "~/pages";
 import { useAuth } from "~/contexts/Auth";
 
-const PrivateRoute = (props: RouteProps) => {
+const AdminRoute = (props: RouteProps) => {
     const {
         state: { user },
     } = useAuth();
 
-    return user ? <Route {...props} /> : <Home />;
+    return user?.isAdmin ? <Route {...props} /> : <Home />;
 };
 
-export default PrivateRoute;
+export default AdminRoute;
