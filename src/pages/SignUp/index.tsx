@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpForm from "@organisms/SignUpForm";
+import SignUpForm from "~/components/blocks/SignUpForm";
 import useSignUp, { SignUpProvider, Action } from "./store";
 import "./style.scss";
 

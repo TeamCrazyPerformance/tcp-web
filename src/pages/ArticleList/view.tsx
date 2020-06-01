@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "@organisms/Header";
+import Header from "@blocks/Header";
 import SideNavigation from "@molecules/SideNavigation";
-import BulletinBoard from "@organisms/BulletinBoard";
+import BulletinBoard from "@blocks/BulletinBoard";
 import {
     useArticleList,
     Action as ArticleListAction,

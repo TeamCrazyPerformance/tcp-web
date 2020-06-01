@@ -1,7 +1,10 @@
 import React from "react";
-import Header from "@organisms/Header";
+import Header from "~/components/blocks/Header";
 import SideNavigation from "@molecules/SideNavigation";
-import { default as ArticleView, ArticleProps } from "@organisms/Article";
+import {
+    default as ArticleView,
+    ArticleProps,
+} from "~/components/blocks/Article";
 import { Category } from "~/types";
 import "./style.scss";
 

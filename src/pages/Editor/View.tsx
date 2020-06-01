@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@organisms/Header";
-import EditorComponent, { EditorProps } from "@organisms/Editor";
+import Header from "~/components/blocks/Header";
+import EditorComponent, { EditorProps } from "~/components/blocks/Editor";
 import { useCategory } from "~/contexts/Category";
 
 const EditorView = (props: EditorProps) => {

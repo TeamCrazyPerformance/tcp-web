@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { FORM_KEYS } from "@organisms/Editor";
+import { FORM_KEYS } from "~/components/blocks/Editor";
 import { EditorReducer, initialState, Action } from "./reducer";
 import View from "./View";
 import * as ArticleApi from "~/apis/Article";
