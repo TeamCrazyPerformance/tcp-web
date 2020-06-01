@@ -42,7 +42,7 @@ const categoryDummy: Category[] = [
 ];
 
 export default {
-    title: "Organisms / Editor",
+    title: "Blocks / Editor",
     component: Editor,
     decorators: [withKnobs],
 };

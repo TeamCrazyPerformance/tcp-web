@@ -4,7 +4,7 @@ import SideNavigation from "~/components/atoms/SideNavigation";
 import {
     default as ArticleView,
     ArticleProps,
-} from "~/components/atoms/Article";
+} from "~/components/blocks/Article";
 import { Category } from "~/types";
 import "./style.scss";
 

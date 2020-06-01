@@ -6,7 +6,7 @@ import Article, { ArticleProps } from ".";
 import Title, { ArticleTitleProps } from "./Title";
 
 export default {
-    title: "Organisms / Article",
+    title: "Blocks / Article",
     component: Article,
     decorators: [withKnobs, StoryRouter()],
 };

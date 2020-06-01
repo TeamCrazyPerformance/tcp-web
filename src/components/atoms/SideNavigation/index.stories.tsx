@@ -5,7 +5,7 @@ import { SideNavigationItemProps } from "~/components/atoms/SideNavigation/SideN
 import SideNavigation from ".";
 
 export default {
-    title: "Molecules / SideNavigation",
+    title: "Atoms / SideNavigation",
     component: SideNavigation,
     decorators: [withKnobs, StoryRouter()],
 };

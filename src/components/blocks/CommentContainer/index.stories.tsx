@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import Comment, { CommentProps } from ".";
 
 export default {
-    title: "Organisms / Comment",
+    title: "Blocks / Comment",
     component: Comment,
     decorators: [withKnobs],
 };

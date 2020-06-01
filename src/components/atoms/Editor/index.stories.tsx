@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import Editor from ".";
 
 export default {
-    title: "Molecules / Editor",
+    title: "Atoms / Editor",
     component: Editor,
     decorators: [withKnobs],
 };

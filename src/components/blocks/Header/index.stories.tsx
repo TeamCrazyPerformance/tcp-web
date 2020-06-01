@@ -4,7 +4,7 @@ import StoryRouter from "storybook-react-router";
 import Header from ".";
 
 export default {
-    title: "Organisms / Header",
+    title: "Blocks / Header",
     decorators: [withKnobs, StoryRouter()],
     component: Header,
 };

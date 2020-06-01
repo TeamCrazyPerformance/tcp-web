@@ -4,7 +4,7 @@ import { Profile } from "~/types";
 import CommentTextArea from ".";
 
 export default {
-    title: "Molecules / CommentTextArea",
+    title: "Atoms / Comment / CommentTextArea",
     component: CommentTextArea,
     decorators: [withKnobs],
 };

@@ -6,7 +6,7 @@ import ArticleListMock from "~/components/blocks/ArticleList/mock";
 import BulletinBoard from ".";
 
 export default {
-    title: "Organisms / BulletinBoard",
+    title: "Blocks / BulletinBoard",
     component: BulletinBoard,
     decorators: [withKnobs, StoryRouter()],
 };

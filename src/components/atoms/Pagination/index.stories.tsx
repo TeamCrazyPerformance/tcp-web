@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import Pagination from ".";
 
 export default {
-    title: "Molecules / Pagination",
+    title: "Atoms / Pagination",
     component: Pagination,
     decorators: [withKnobs],
 };

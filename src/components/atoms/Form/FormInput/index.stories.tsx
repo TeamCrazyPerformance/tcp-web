@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import FormInput from ".";
 
 export default {
-    title: "Molecules / FormInput",
+    title: "Atoms / Form / FormInput",
     decorators: [withKnobs],
     component: FormInput
 };

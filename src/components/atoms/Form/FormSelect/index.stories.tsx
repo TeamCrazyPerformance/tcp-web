@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import FormSelect from ".";
 
 export default {
-    title: "Molecules / FormSelect",
+    title: "Atoms / Form / FormSelect",
     decorators: [withKnobs],
     component: FormSelect
 };

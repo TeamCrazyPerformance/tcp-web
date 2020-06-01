@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import SignUpForm from ".";
 
 export default {
-    title: "Organisms / SingUpForm",
+    title: "Blocks / SingUpForm",
     decorators: [withKnobs],
     component: SignUpForm,
 };

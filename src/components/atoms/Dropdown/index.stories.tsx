@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions";
 import Dropdown, { DropdownItem } from ".";
 
 export default {
-    title: "Molecules / DropDown",
+    title: "Atoms / DropDown",
     component: Dropdown,
     decorators: [withKnobs]
 };

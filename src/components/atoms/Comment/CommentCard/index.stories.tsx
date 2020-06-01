@@ -3,7 +3,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs";
 import CommentCard, { CommentCardProps } from ".";
 
 export default {
-    title: "Molecules / CommentCard",
+    title: "Atoms / Comment / CommentCard",
     component: CommentCard,
     decorators: [withKnobs],
 };

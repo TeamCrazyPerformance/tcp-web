@@ -5,7 +5,7 @@ import ArticleListMock from "./mock";
 import ArticleList from ".";
 
 export default {
-    title: "Molecules / ArticleList",
+    title: "Blocks / ArticleList",
     component: ArticleList,
     decorators: [withKnobs, StoryRouter()],
 };
