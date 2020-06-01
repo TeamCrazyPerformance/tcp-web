@@ -1,13 +1,17 @@
 import React, { useReducer, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import Template from "./Template";
 import { FORM_KEYS } from "~/components/UI/blocks/Editor";
 import { EditorReducer, initialState, Action } from "./reducer";
-import View from "./View";
 import * as ArticleApi from "~/apis/Article";
-import { CategoryProvider } from "~/contexts/Category";
+import { CategoryProvider, useCategory } from "~/contexts/Category";
 
 const Editor = () => {
     const [state, dispatch] = useReducer(EditorReducer, initialState);
+    const {
+        state: { categories },
+    } = useCategory();
+
     const { id } = useParams();
     const history = useHistory();
 
@@ -65,15 +69,18 @@ const Editor = () => {
     };
 
     return (
-        <CategoryProvider>
-            <View
-                initialValue={state.form}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                handleCategoryChange={handleCategoryChange}
-            />
-        </CategoryProvider>
+        <Template
+            categories={categories}
+            initialValue={state.form}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            handleCategoryChange={handleCategoryChange}
+        />
     );
 };
 
-export default Editor;
+export default () => (
+    <CategoryProvider>
+        <Editor />
+    </CategoryProvider>
+);
