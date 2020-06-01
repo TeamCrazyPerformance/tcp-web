@@ -19,7 +19,7 @@ const SideNavigation = (props: SideNavigationProps) => {
     const { items, activeItemId } = props;
 
     const [currentItemId, setActiveItemId] = useState(
-        activeItemId || items[0]?.id
+        activeItemId || items[0]?.id,
     );
     const [childActiveId, setChildActiveId] = useState("");
 
@@ -46,15 +46,20 @@ const SideNavigation = (props: SideNavigationProps) => {
                     {...item}
                 />
             )),
-        [items, currentItemId, childActiveId]
+        [items, currentItemId, childActiveId],
     );
 
     if (!items.length) return null;
 
     return (
-        <section className="side_navigation_container" onClick={handleClick}>
-            <ul>{SideNavigationItems}</ul>
-        </section>
+        <nav>
+            <section
+                className="side_navigation_container"
+                onClick={handleClick}
+            >
+                <ul>{SideNavigationItems}</ul>
+            </section>
+        </nav>
     );
 };
 

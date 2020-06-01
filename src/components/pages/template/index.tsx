@@ -5,7 +5,7 @@ import { Category } from "~/types";
 import "./style.scss";
 
 interface Props {
-    categories: Category[];
+    categories?: Category[];
     children: React.ReactNode;
 }
 
@@ -16,9 +16,7 @@ const BaseTemplate = (props: Props) => {
         <>
             <Header />
             <div className="body_wrapper">
-                <nav>
-                    <SideNavigation items={categories} />
-                </nav>
+                {categories && <SideNavigation items={categories} />}
                 <main>{children}</main>
             </div>
         </>
