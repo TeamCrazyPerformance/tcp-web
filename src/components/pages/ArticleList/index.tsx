@@ -1,5 +1,5 @@
 import React from "react";
-import ArticleListView from "~/components/pages/ArticleList/template";
+import Template from "./Template";
 import { CategoryProvider, useCategory } from "~/contexts/Category";
 import { useAuth } from "~/contexts/Auth";
 import {
@@ -22,7 +22,7 @@ const View = () => {
     } = useAuth();
 
     return (
-        <ArticleListView
+        <Template
             categories={categories}
             user={user}
             articles={articles}

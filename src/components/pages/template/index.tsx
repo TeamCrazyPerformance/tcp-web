@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Header from "~/components/UI/blocks/Header";
 import SideNavigation from "~/components/UI/atoms/SideNavigation";
 import { Category } from "~/types";
@@ -6,7 +6,7 @@ import "./style.scss";
 
 interface Props {
     categories: Category[];
-    children: ReactNode;
+    children: React.ReactNode;
 }
 
 const BaseTemplate = (props: Props) => {

@@ -6,7 +6,7 @@ import { EditorReducer, initialState, Action } from "./reducer";
 import * as ArticleApi from "~/apis/Article";
 import { CategoryProvider, useCategory } from "~/contexts/Category";
 
-const Editor = () => {
+const View = () => {
     const [state, dispatch] = useReducer(EditorReducer, initialState);
     const {
         state: { categories },
@@ -81,6 +81,6 @@ const Editor = () => {
 
 export default () => (
     <CategoryProvider>
-        <Editor />
+        <View />
     </CategoryProvider>
 );
