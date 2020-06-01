@@ -2,18 +2,15 @@ import React, { ReactNode } from "react";
 import Header from "~/components/UI/blocks/Header";
 import SideNavigation from "~/components/UI/atoms/SideNavigation";
 import { Category } from "~/types";
-// import "./style.scss";
+import "./style.scss";
 
 interface Props {
     categories: Category[];
-    children: ReactNode
+    children: ReactNode;
 }
 
 const BaseTemplate = (props: Props) => {
-    const {
-        categories,
-        children,
-    } = props;
+    const { categories, children } = props;
 
     return (
         <>
@@ -22,9 +19,7 @@ const BaseTemplate = (props: Props) => {
                 <nav>
                     <SideNavigation items={categories} />
                 </nav>
-                <main>
-                    {children}
-                </main>
+                <main>{children}</main>
             </div>
         </>
     );
