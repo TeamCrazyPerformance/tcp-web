@@ -5,16 +5,7 @@ interface Props<T> {
     members: T[];
 }
 
-const headers = [
-    "입부년도",
-    "학번",
-    "이름",
-    "학과",
-    "연락처",
-    "생일",
-    "학적",
-    "등급",
-];
+const headers = ["학번", "이름", "연락처", "생일", "학적", "등급"];
 
 const Select = ({ value }: { value: number }) => {
     const arr = [];
