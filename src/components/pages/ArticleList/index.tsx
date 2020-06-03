@@ -1,5 +1,5 @@
 import React from "react";
-import Template from "./Template";
+import Template from "./template";
 import { CategoryProvider, useCategory } from "~/contexts/Category";
 import { useAuth } from "~/contexts/Auth";
 import {
