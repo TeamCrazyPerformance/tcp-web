@@ -1,11 +1,13 @@
 import React from "react";
-import Header from "~/components/UI/blocks/Header";
+import Template from "./Template";
+import useGetMembers from "./useGetMembers";
 
-const Admin = () => (
-    <>
-        <Header />
-        <main>welcome, Admin!</main>
-    </>
-);
+const Admin = () => {
+    const {
+        state: { members },
+    } = useGetMembers();
+
+    return <Template members={members} />;
+};
 
 export default Admin;
